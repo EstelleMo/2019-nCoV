@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<bean name="sqlSessionfactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- dataSource -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 取别名 -->
+		<property name="typeAliasesPackage" value="com.estelle.bean"></property>
+	</bean>
+	
+	<!-- 管理dataSource -->
+	<!-- 引入db.properties -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 管理Mapper对象 扫描mapper所在的包 生成动态代理 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.estelle.mapper"></property>
+	</bean>
+	
+	<context:component-scan base-package="com.estelle.service.impl"></context:component-scan>
+</beans>

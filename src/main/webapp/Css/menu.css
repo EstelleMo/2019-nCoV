@@ -1,0 +1,17 @@
+/*-------------header */
+.tou {height: 90px;width:100%; background-color:Gray;}
+
+.tou #logo {margin-top:10px;}
+
+.tou #search-box {position: relative;width: 300px;margin-top:30px;}
+.tou #search-form {height: 25px;border:3px solid #423531;;background-color: #fff;overflow: hidden;}
+.tou #search-text {font-size: 14px;color: #ddd;background: transparent;}
+.tou #search-box input[type="text"] {width: 80%;padding: 5px 0 5px 1em;color: #333;outline: none;}
+.tou #search-button {position: absolute;top: 0;right: 0;height: 30px;width: 80px;font-size: 14px;color: #fff;text-align: center;line-height: 26px;background-color: #423531;cursor: pointer;border:0px;}
+
+/*------------menu */
+.hang {width:100%;height: 37px;margin-bottom: 20px;padding: 0px 10px;background-color:#808080;border:1px solid #423531;}
+.hang ul { width:960px; list-style: none;margin: 0 auto;padding: 0;}
+.hang ul li {position: relative;float: left;padding: 6px 5px 0px 5px}
+.hang ul li a {font-size: 13px; line-height:14px;color: #C9B5AF;display: block;padding: 6px 10px 6px 10px;margin-bottom: 5px;z-index: 6;position: relative;}
+.hang ul li:hover a{color:#ffffff;}

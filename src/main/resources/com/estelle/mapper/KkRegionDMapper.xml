@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.estelle.mapper.KkRegionDMapper" >
+  <resultMap id="BaseResultMap" type="com.estelle.bean.KkRegionD" >
+    <result column="id" property="id" jdbcType="DOUBLE" />
+    <result column="region_code" property="regionCode" jdbcType="VARCHAR" />
+    <result column="region_name" property="regionName" jdbcType="VARCHAR" />
+    <result column="fid" property="fid" jdbcType="DOUBLE" />
+    <result column="region_name_en" property="regionNameEn" jdbcType="VARCHAR" />
+    <result column="region_shortname_en" property="regionShortnameEn" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, region_code, region_name, fid, region_name_en, region_shortname_en, level
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.estelle.bean.KkRegionDExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kk_region_d
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.estelle.bean.KkRegionDExample" >
+    delete from kk_region_d
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.estelle.bean.KkRegionD" >
+    insert into kk_region_d (id, region_code, region_name, 
+      fid, region_name_en, region_shortname_en, 
+      level)
+    values (#{id,jdbcType=DOUBLE}, #{regionCode,jdbcType=VARCHAR}, #{regionName,jdbcType=VARCHAR}, 
+      #{fid,jdbcType=DOUBLE}, #{regionNameEn,jdbcType=VARCHAR}, #{regionShortnameEn,jdbcType=VARCHAR}, 
+      #{level,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.estelle.bean.KkRegionD" >
+    insert into kk_region_d
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="regionCode != null" >
+        region_code,
+      </if>
+      <if test="regionName != null" >
+        region_name,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="regionNameEn != null" >
+        region_name_en,
+      </if>
+      <if test="regionShortnameEn != null" >
+        region_shortname_en,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DOUBLE},
+      </if>
+      <if test="regionCode != null" >
+        #{regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=DOUBLE},
+      </if>
+      <if test="regionNameEn != null" >
+        #{regionNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="regionShortnameEn != null" >
+        #{regionShortnameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.estelle.bean.KkRegionDExample" resultType="java.lang.Integer" >
+    select count(*) from kk_region_d
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update kk_region_d
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=DOUBLE},
+      </if>
+      <if test="record.regionCode != null" >
+        region_code = #{record.regionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionName != null" >
+        region_name = #{record.regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fid != null" >
+        fid = #{record.fid,jdbcType=DOUBLE},
+      </if>
+      <if test="record.regionNameEn != null" >
+        region_name_en = #{record.regionNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionShortnameEn != null" >
+        region_shortname_en = #{record.regionShortnameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update kk_region_d
+    set id = #{record.id,jdbcType=DOUBLE},
+      region_code = #{record.regionCode,jdbcType=VARCHAR},
+      region_name = #{record.regionName,jdbcType=VARCHAR},
+      fid = #{record.fid,jdbcType=DOUBLE},
+      region_name_en = #{record.regionNameEn,jdbcType=VARCHAR},
+      region_shortname_en = #{record.regionShortnameEn,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+   <select id="selectById" resultMap="BaseResultMap" parameterType="com.estelle.bean.KkRegionDExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from kk_region_d
+  	where fid = #{id}
+  </select>
+  
+</mapper>
