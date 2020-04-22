@@ -11,7 +11,17 @@
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
+	<script type="text/javascript">
+	window.οnlοad=function(){ 
+		var pwd = ${student.realPwd};
+		if(pwd == null){
+		 alert("请修改密码"); 
+		}
 
+		} 
+
+	</script>
+	
 	<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 		<TBODY>
 			<TR>
@@ -37,10 +47,12 @@
 						</c:if>
 						<c:if test="${empty student }">
 							<tr>
-								<td align="center"><img src="./Images/jackson.jpg" width="145"
-									height="46" /></td>
+								<td align="center"><img src="./Images/jackson.jpg"
+									width="145" height="46" /></td>
 							</tr>
 						</c:if>
+
+					
 					</table>
 				</td>
 				<TD width=15 background=./Images/new_023.jpg><IMG

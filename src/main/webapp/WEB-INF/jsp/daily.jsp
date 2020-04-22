@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,87 +23,87 @@
 <link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
 <link rel="stylesheet" href="../Css/menu.css">
 
-</head>
-<header class="tou" style="background-color: lightblue">
-	<div class="zerogrid">
-		<div class="row">
-			<div class="col05" style="padding-left: 200px;">
-				<div id="logo">
-					<a href="${pageContext.request.contextPath }/test"><img
-						src="./img/logo.png" /></a>
-				</div>
-			</div>
-			<div class="col06 offset05">
-				<div style="padding-top: 2px">
-					<ul>
-						<ul style="padding-left: 650px; font-size: 15px;">
-							<li style="display: inline"><font size="3"
-								style="color: darkgreen">欢迎您</font></li>
-							<li style="display: inline; margin-left: 1rem"><font
-								size="3" style="color: darkgreen">${student.name}</font></li>
+<style typte="text/css">
+#tt: {
+	COLOR: #003366;
+	FONT-FAMILY: Verdana
+}
+</style>
 
-						</ul>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</header>
-<nav class="hang" style="height: 41px" float="right"></nav>
+</head>
+
+
 
 <body>
+	<div>
+		<font style="color: #003366" size="10"><b>健康打卡</b></font>
+	</div>
+	<%
+		Date d = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String now = df.format(d);
+	%>
+	<br>
+	<b id="tt" style="color: #003366" size="5">当前时间：</b>
+	<div id="time1" style="color: #003366" size="5">
+		<script type="text/javascript">
+				
+				setInterval("document.getElementById('time1').innerHTML=new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);
+				</script>
+	</div>
+	<table id='mycalendar' class='calendar'></table>
+	<script type="text/javascript">
+	$('#mydatepicker').dcalendarpicker(); //初始化日期选择器
+	$('#mycalendar').dcalendar(); //初始化日历      
+	$('#mydatepicker').dcalendarpicker({format: 'yyyy-mm-dd'});                   
+	$('#mydatepicker').dcalendarpicker({format: 'yyyy-mm-dd'});
+	</script>
 
-	<!-- Loader -->
-	<!-- <div id="loader-wrapper">
-		<div id="loader"></div>
-		<div class="loader-section section-left"></div>
-		<div class="loader-section section-right"></div>
-	</div> -->
+	<div style="margin-bottom: 10px; margin-top: 10px">
+
+		<c:if test="${!empty family }">
+			<form style="float: left;"
+				action="${pageContext.request.contextPath }/family">
+				<input type="submit" width="100" value="添加家庭成员" border="0"
+					style="background: url('./Images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+			</form>
+		</c:if>
+
+		<form style="float: left;"
+			action="${pageContext.request.contextPath }/family">
+			<input type="submit" width="100" value="添加家庭成员" border="0"
+				style="background: url('./Images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+		</form>
+	</div>
+
 	<form action="${pageContext.request.contextPath }/user/saveDaily">
 		<div id="preload-01" style="color: black">
 
-			健康打卡
 			<hr color="lightgrey" />
-			<font style="color: darkgreen">1.健康码</font>
+			<font color="red">*</font> <font id="healtycode"
+				style="color: darkgreen"><b>1.健康码</b></font>
 			<div style="margin-bottom: 10px">
 				<tr>
-					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td>
-					<input type="radio">红码
-					<input type="radio">黄码
-					<input type="radio">绿码
-					
-					
-					</td>
+					<td></td>
+					<td><input type="radio" name="healtycode">红码 <input
+						type="radio" name="healtycode">黄码 <input type="radio"
+						name="healtycode">绿码</td>
 				</tr>
 			</div>
 
 			<div style="margin-bottom: 10px">
-				<font color="darkgreen">2.班级</font>
+				<font color="red">*</font> <font id="tt" style="color: darkgreen"><b>2.今日体温</b></font>
 				<div>
-					&nbsp;&nbsp;&nbsp;<input type="text"
-						placeholder="${student.classNo }">
-				</div>
-
-			</div>
-			<div style="margin-bottom: 10px">
-				<font color="darkgreen">3.学号</font>
-				<div>
-					&nbsp;&nbsp;&nbsp;<input type="text" placeholder="${student.no }">
-				</div>
-			</div>
-			<div style="margin-bottom: 10px">
-				<font color="darkgreen">4.学院</font>
-				<div>
-					&nbsp;&nbsp;&nbsp;<input type="text" readonly="readonly"
-						placeholder="${student.college }">
+					<font color="darkgreen">上午体温</font>&nbsp;&nbsp;&nbsp;<input
+						type="text" id="amTw" style="width: 50px">℃
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="darkgreen">下午体温</font>&nbsp;&nbsp;&nbsp;<input
+						type="text" id="pmTw" style="width: 50px">℃
 				</div>
 			</div>
 
-
 			<div style="margin-bottom: 10px">
-				<font color="red">*</font> <font color="darkgreen">5.户籍</font>
-				<div id="nativePlace">
+				<font color="red">*</font> <font id="tt" color="darkgreen"><b>3.当前所在地</b></font>
+				<div id="currAdd">
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td><select class="select" id="province_code"
@@ -112,50 +115,84 @@
 						</select> <select class="select" id="area_code" name="area_code">
 								<option value="">请选择</option>
 						</select></td>
+						<td><textarea rows="1" cols="" placeholder="请输入详细地址"></textarea></td>
 					</tr>
 				</div>
 			</div>
-
 			<div style="margin-bottom: 10px">
-				<font color="red">*</font> <font color="darkgreen">6.家庭住址</font>
-				<div class="" id="homeDetAdd">
-					<tr>
-						<td>&nbsp;&nbsp;&nbsp;</td>
-						<td><select class="select" id="province_code"
-							name="province_code" οnchange="getCity()">
-								<option value="">请选择</option>
-						</select> <select class="select" id="city_code" name="city_code"
-							οnchange="getArea()">
-								<option value="">请选择</option>
-						</select> <select class="select" id="area_code" name="area_code">
-								<option value="">请选择</option>
-						</select></td>
-
-					</tr>
-					<input type="text" placeholder="请输入详细地址">
-				</div>
-			</div>
-
-			<div style="margin-bottom: 10px">
-				<font color="red">* </font> <font color="darkgreen"> 7.联系电话 </font>
+				<font color="red">*</font> <font id="tt" color="darkgreen"><b>4.填报当日是否在校</b></font>
 				<div>
-					&nbsp;&nbsp;&nbsp;<input type="text" id="tel"
-						placeholder="请输入您的联系方式">
+					<input type="radio" name="isInSch">是 <input type="radio"
+						name="isInSch">否
+				</div>
+			</div>
+			<div style="margin-bottom: 30px">
+				<font color="red">*</font> <font color="darkgreen"
+					style="margin-bottom: 10px"><b>5.目前健康状况</b></font>
+				<div>
+					<input type="radio" name="healthyStu">健康 <br> <input
+						type="radio" name="healthyStu">感冒<br> <input
+						type="radio" name="healthyStu">咳嗽<br> <input
+						type="radio" name="healthyStu">乏力<br> <input
+						type="radio" name="healthyStu">呼吸困难<br> <input
+						type="radio" name="healthyStu">腹泻<br> 其他
+					<textarea rows="1" cols=""></textarea>
+
 				</div>
 			</div>
 
+			<div style="margin-bottom: 10px">
+				<font color="red">*</font> <font color="darkgreen"><b>6.是否咳嗽、发烧</b></font>
+				<div class="" id="isIll">
+					&nbsp;&nbsp;&nbsp;<input type="radio" name="isIll">咳嗽 <input
+						type="radio" name="isIll">发烧 <input type="radio"
+						name="isIll">咳嗽或发烧 &nbsp;&nbsp;&nbsp;&nbsp;其他症状：
+					<textarea rows="" cols=""></textarea>
+				</div>
+			</div>
 
 			<div style="margin-bottom: 10px">
-				<font color="red">* </font> <font color="darkgreen"> 8.身份证 </font>
+				<font color="red">* </font> <font color="darkgreen"> <b>7.是否新冠肺炎确诊病例</b>
+				</font>
+				<div>
+					&nbsp;&nbsp;&nbsp;<input type="radio" id="isNcov" name="isNcov">是
+					<input type="radio" id="isNcov" name="isNcov">否
+				</div>
+			</div>
+
+			<div style="margin-bottom: 10px">
+				<font color="red">* </font> <font color="darkgreen"> <b>8.是否感染新冠肺炎后已治愈
+				</b></font>
+				<div>
+					&nbsp;&nbsp;&nbsp;<input type="radio" id="isCure" name="isCure">是
+					<input type="radio" id="isCure" name="isCure">否
+				</div>
+			</div>
+
+			<div style="margin-bottom: 10px">
+				<font color="red">* </font> <font color="darkgreen"> <b>9.是否新冠肺炎疑似病例</b>
+				</font>
 				<div id="idcard">
-					&nbsp;&nbsp;&nbsp;<input type="text" id="idcard"
-						placeholder="请输入您的身份证">
+					&nbsp;&nbsp;&nbsp;<input type="radio" id="isAspect" name="isAspect">是
+					<input type="radio" name="isAspect">否
 				</div>
 			</div>
-
-
-
-		</div>
+			<div style="margin-bottom: 10px">
+				<font color="darkgreen"><b>10.今日的公共交通出行情况</b></font>
+				<div id="idcard">
+					&nbsp;&nbsp;&nbsp;
+					<textarea name="todayTool" id="todayTriffTools" rows="" cols=""></textarea>
+				</div>
+			</div>
+			<div style="margin-bottom: 10px">
+				<font color="darkgreen"><b>11.近14日的公共交通工具</b></font>
+				<div id="idcard">
+					&nbsp;&nbsp;&nbsp;
+					<textarea rows="" cols="" name="twoWeeksTriffTool"
+						id="twoWeeksTriffTool"></textarea>
+				</div>
+			</div>
+			<input type="submit" value="提交" style="color: darkgreen; size: 5">
 	</form>
 
 
@@ -167,6 +204,12 @@
 	<script type="text/javascript" src="./Js/jquery.magnific-popup.min.js"></script>
 	<script type="text/javascript" src="./Js/jquery.backstretch.min.js"></script>
 	<script type="text/javascript" src="./slick/slick.min.js"></script>
+	<link rel="stylesheet" href="./Css/dcalendar.picker.css" />
+	<script type="text/javascript" src="./Js/jquery.min.js"></script>
+	<script type="text/javascript" src="./Js/dcalendar.picker.js"></script>
+
+
+
 	<!-- Slick Carousel -->
 
 	<script type="text/javascript">

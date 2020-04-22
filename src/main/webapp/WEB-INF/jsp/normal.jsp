@@ -22,86 +22,52 @@
 <link rel="stylesheet" href="../Css/menu.css">
 
 </head>
-<header class="tou" style="background-color: lightblue">
-	<div class="zerogrid">
-		<div class="row">
-			<div class="col05" style="padding-left: 200px;">
-				<div id="logo">
-					<a href="${pageContext.request.contextPath }/test"><img
-						src="./img/logo.png" /></a>
-				</div>
-			</div>
-			<div class="col06 offset05">
-				<div style="padding-top: 2px">
-					<ul>
-						<c:if test="${!empty student } ">
-							<ul style="padding-left: 650px; font-size: 15px;">
-								<li style="display: inline"><font size="3"
-									style="color: darkgreen">欢迎您</font></li>
-								<li style="display: inline; margin-left: 1rem"><font
-									size="3" style="color: darkgreen">${student.name}</font></li>
-							</ul>
-						</c:if>
-						<c:if test="${empty student} ">
-							<ul style="padding-left: 650px; font-size: 15px;">
-								<li style="display: inline"><a
-									style="color: darkgreen; size: 3;"> 请登录 </a></li>
-							</ul>
-						</c:if>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</header>
-<nav class="hang" style="height: 41px" float="right"></nav>
-
-<%
-	int i = 0;
-%>
 <body>
 
-	<!-- Loader -->
-	<!-- <div id="loader-wrapper">
-		<div id="loader"></div>
-		<div class="loader-section section-left"></div>
-		<div class="loader-section section-right"></div>
-	</div> -->
+	<font style="color: #003366" size="10"><b>基本信息</b></font>
+	<hr color="lightgrey" />
+	
 	<form action="${pageContext.request.contextPath }/user/saveNormal">
 		<div id="preload-01" style="color: black">
-
-			基本信息
-			<hr color="lightgrey" />
 			<font style="color: darkgreen">1.您的姓名</font>
-			<div style="margin-bottom: 10px">
-				&nbsp;&nbsp;&nbsp;<input type="text" placeholder="${student.name }">
-			</div>
 
 			<div style="margin-bottom: 10px">
-				<font color="darkgreen">2.班级</font>
+				&nbsp;&nbsp;&nbsp;<input type="text" readonly="readonly"
+					value="${student.name }" id="name">
+			</div>
+			<div style="margin-bottom: 10px">
+				<font color="darkgreen">2.性别</font> <input type="radio"
+					name="gender" id="gender"
+					<c:if test="${student.gender== '男'}">checked="checked"</c:if>>男
+				<input type="radio" name="sex" id="gender"
+					<c:if test="${student.gender== '女'}">checked="checked"</c:if>>女
+			</div>
+			<div style="margin-bottom: 10px">
+				<font color="darkgreen">3.班级</font>
 				<div>
-					&nbsp;&nbsp;&nbsp;<input type="text"
-						placeholder="${student.classNo }">
+					&nbsp;&nbsp;&nbsp;<input type="text" value="${student.classNo }"
+					id="classNo"	readonly="readonly">
 				</div>
 
 			</div>
 			<div style="margin-bottom: 10px">
-				<font color="darkgreen">3.学号</font>
+				<font color="darkgreen">4.学号</font>
 				<div>
-					&nbsp;&nbsp;&nbsp;<input type="text" placeholder="${student.no }">
+					&nbsp;&nbsp;&nbsp;<input type="text" value="${student.no }"
+					 id="no"	readonly="readonly">
 				</div>
 			</div>
 			<div style="margin-bottom: 10px">
-				<font color="darkgreen">4.学院</font>
+				<font color="darkgreen">5.学院</font>
 				<div>
 					&nbsp;&nbsp;&nbsp;<input type="text" readonly="readonly"
-						placeholder="${student.college }">
+					id="college"	value="${student.college }">
 				</div>
 			</div>
 
 
 			<div style="margin-bottom: 10px">
-				<font color="red">*</font> <font color="darkgreen">5.户籍</font>
+				<font color="red">*</font> <font color="darkgreen">6.户籍</font>
 				<div id="nativePlace">
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;</td>
@@ -119,7 +85,7 @@
 			</div>
 
 			<div style="margin-bottom: 10px">
-				<font color="red">*</font> <font color="darkgreen">6.家庭住址</font>
+				<font color="red">*</font> <font color="darkgreen">7.家庭住址</font>
 				<div class="" id="homeDetAdd">
 					<tr>
 						<td>&nbsp;&nbsp;&nbsp;</td>
@@ -139,7 +105,7 @@
 			</div>
 
 			<div style="margin-bottom: 10px">
-				<font color="red">* </font> <font color="darkgreen"> 7.联系电话 </font>
+				<font color="red">* </font> <font color="darkgreen"> 8.联系电话 </font>
 				<div>
 					&nbsp;&nbsp;&nbsp;<input type="text" id="tel"
 						placeholder="请输入您的联系方式">
@@ -148,16 +114,15 @@
 
 
 			<div style="margin-bottom: 10px">
-				<font color="red">* </font> <font color="darkgreen"> 8.身份证 </font>
+				<font color="red">* </font> <font color="darkgreen"> 9.身份证 </font>
 				<div id="idcard">
 					&nbsp;&nbsp;&nbsp;<input type="text" id="idcard"
 						placeholder="请输入您的身份证">
 				</div>
 			</div>
-
-
-
 		</div>
+		
+		<input type="submit" style="color: darkgreen" value="提交">
 	</form>
 
 
@@ -181,7 +146,7 @@
 					for (var i = 0; i < data.length; i++) {
 						$('#province_code').append(
 								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+										+ data[i].regionName + "</option>");
 					}
 				}/* ,
 				error : function() {
@@ -209,8 +174,8 @@
 									+ "</option>");
 					for (var i = 0; i < data.length; i++) {
 						$('#city_code').append(
-								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+								"<option value='" + data[i].id +"' >"
+										+ data[i].regionName + "</option>");
 					}
 				}/* ,
 				error : function() {
@@ -235,7 +200,7 @@
 					for (var i = 0; i < data.length; i++) {
 						$('#area_code').append(
 								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+										+ data[i].regionName + "</option>");
 					}
 				}/* ,
 				error : function() {

@@ -8,6 +8,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -31,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.estelle.bean.Manager;
 import com.estelle.bean.Student;
+import com.estelle.bean.StudentHealthy;
 import com.estelle.service.ManagerService;
 import com.estelle.service.StudentService;
 import com.estelle.util.PwdUtil;
@@ -44,52 +46,6 @@ public class UserController {
 	@Autowired
 	private ManagerService manService;
 
-	@RequestMapping("/login1")
-	@ResponseBody
-	public String login(HttpServletRequest request, HttpServletResponse response, @Param("no") String no,
-			@Param("password") String password, @Param("checkcode") String checkcode) throws IOException {
-		HttpSession session = request.getSession();
-		System.out.println(no + " and  " + password);
-		System.out.println(checkcode);
-		String check = (String) session.getAttribute("verifyCodeValue");
-
-		if (check.equalsIgnoreCase(checkcode)) {
-			try {
-				System.out.println("进来了");
-				// 调用登陆方法
-//				 System.out.println(user.getName());
-				String auto = request.getParameter("autoLogin");// 登录页面还没添加name属性
-				// 保存账号密码到cookie
-				if ("on".equals(auto)) {
-//					String username = user.getName();
-//					Cookie nameCookie = new Cookie("username", username);
-//					Cookie pwdCookie = new Cookie("password", password);
-//					nameCookie.setMaxAge(Integer.MAX_VALUE);
-//					pwdCookie.setMaxAge(Integer.MAX_VALUE);
-//					nameCookie.setPath(request.getContextPath());
-//					pwdCookie.setPath(request.getContextPath());
-//					response.addCookie(nameCookie);
-//					response.addCookie(pwdCookie);
-
-				}
-
-//				response.sendRedirect(request.getContextPath());
-			} catch (Exception e) {
-				request.setAttribute("exception1", e);
-				System.out.println(e);
-				response.sendRedirect("login");
-			}
-
-		} else {
-			System.out.println("没进来");
-			RuntimeException runtimeException = new RuntimeException("验证码错误");
-			request.setAttribute("exception", runtimeException);
-			response.sendRedirect("login");
-		}
-
-		return "index";
-	}
-
 	@RequestMapping("/login")
 	public @ResponseBody ModelAndView studentLogin(HttpServletRequest request, HttpServletResponse response,
 			@Param("no") String no, @Param("password") String password, @Param("checkcode") String checkcode) {
@@ -101,6 +57,7 @@ public class UserController {
 			Student student = stuService.login(no, password);
 			if (student != null) {
 				session.setAttribute("student", student);
+				String sname = student.getName();
 				mav.setViewName("test"); // 要改成 index
 				return mav;
 			} else { // 若学生表中找不到该用户则到managaer表中查找
@@ -116,6 +73,53 @@ public class UserController {
 		}
 		mav.setViewName("login");
 		return mav;
+	}
+
+	@RequestMapping("/dailyList")
+	public String dailyList(HttpServletRequest request, HttpServletResponse response,
+			@Param(value = "subDate") Date subDate) {
+
+		System.out.println(subDate);
+		
+
+		return "success";
+	}
+
+	@RequestMapping("/backApp")
+	public String backApplication() {
+
+		return "Appsuccess";
+	}
+
+	@RequestMapping("/saveNormal")
+	public @ResponseBody() String saveNormal(HttpServletRequest request
+			,HttpServletResponse response
+			,@Param(value = "nativePlace")String nativePlace
+			,@Param(value = "homeDetAdd")String homeDetAdd
+			,@Param(value = "tel")String tel
+			,@Param(value = "idcard")String idcard
+			) {
+		HttpSession session = request.getSession();
+		Student s = (Student) session.getAttribute("student");
+		Student student = new Student();
+		student.setHomeDetAdd(homeDetAdd);
+		student.setIdcard(idcard);
+		student.setTel(tel);
+		int i = stuService.saveMsg(student);
+		
+		
+		return "success";
+	}
+
+	@RequestMapping("/saveDaily")
+	public String saveDaily() {
+
+		return "success";
+	}
+	@RequestMapping("/saveFamDaily")
+	public String saveFamDaily() {
+		
+		return "success";
 	}
 
 	@RequestMapping("/getVerifyCode")

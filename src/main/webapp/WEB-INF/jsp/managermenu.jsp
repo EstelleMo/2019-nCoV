@@ -133,10 +133,6 @@ A.active {
 													<TD class=menuSmall><A class=style2
 														href="${pageContext.request.contextPath}/studentSub" target=main>－ 学生打卡情况</A></TD>
 												</TR>
-												<TR>
-													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath}/studentList" target=main>－  学生打卡详情</A></TD>
-												</TR>
 
 											</TBODY>
 										</TABLE>
@@ -156,7 +152,7 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/info" target=main>－ 疫情情报</A></TD>
+														href="${pageContext.request.contextPath }/ncovinfo" target=main>－ 疫情情报</A></TD>
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2
@@ -180,11 +176,11 @@ A.active {
 											cellPadding=2 width=155 align=center border=0>
 											<TBODY>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
+													<TD class=menuSmall><A class=style2 href="/backSchApp"
 														target=main>－ 学生返校申请</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
+													<TD class=menuSmall><A class=style2 href="/codeApp"
 														target=main>－ 学生出入证申请</A></TD>
 												</TR>
 
@@ -209,7 +205,7 @@ A.active {
 														target=main>－ 学生密码重置</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
+													<TD class=menuSmall><A class=style2 href="/selectList"
 														target=main>－ 信息查询</A></TD>
 												</TR>
 												<TR>

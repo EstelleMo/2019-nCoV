@@ -62,12 +62,12 @@ P {
 								</TR>
 								<c:if test="${!empty manager}">
 									<TR>
-										<TD height=35 align="right">当前用户： ${manager.college }管理员
-											${manager.name } &nbsp;&nbsp;&nbsp;&nbsp; <A
+										<TD height=35 align="right"><font color="darkblue" size="3">当前用户： ${manager.college }管理员
+											&nbsp;&nbsp;&nbsp;&nbsp;${manager.name } </font>&nbsp;&nbsp;&nbsp;&nbsp; <A
 											href="${pageContext.request.contextPath }/reset" target=_top><FONT
-												color=red>修改密码</FONT></A> &nbsp;&nbsp;&nbsp;&nbsp; <A
+												color=darkblue>修改密码</FONT></A> &nbsp;&nbsp;&nbsp;&nbsp; <A
 											href="${pageContext.request.contextPath }/logout" target=_top><FONT
-												color=red>安全退出</FONT></A>
+												color=darkblue>安全退出</FONT></A>
 										</TD>
 									</TR>
 								</c:if>

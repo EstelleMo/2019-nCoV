@@ -130,4 +130,10 @@ public class Student {
     public void setHomeDetAdd(String homeDetAdd) {
         this.homeDetAdd = homeDetAdd == null ? null : homeDetAdd.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", no=" + no + ", name=" + name + "]";
+	}
+    
 }

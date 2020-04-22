@@ -83,7 +83,7 @@ P {
 							</TBODY>
 						</TABLE>
 					</TD>
-					<TD width=10><IMG src="../Images/new_003.jpg" border=0></TD>
+					<TD width=10><IMG src="./Images/new_003.jpg" border=0></TD>
 				</TR>
 			</TBODY>
 		</TABLE>

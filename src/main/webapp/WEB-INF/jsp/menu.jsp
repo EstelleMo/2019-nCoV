@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD id=Head1>
@@ -107,8 +107,8 @@ A.active {
 			<TBODY>
 				<TR>
 					<TD width=15><IMG src="./Images/new_005.jpg" border=0></TD>
-					<TD align=middle width=180 background=./Images/new_006.jpg height=35><B>学生填报
-							－功能菜单</B></TD>
+					<TD align=middle width=180 background=./Images/new_006.jpg
+						height=35><B>学生填报 －功能菜单</B></TD>
 					<TD width=15><IMG src="./Images/new_007.jpg" border=0></TD>
 				</TR>
 			</TBODY>
@@ -121,8 +121,9 @@ A.active {
 						<TABLE cellSpacing=0 cellPadding=3 width=165 align=center border=0>
 							<TBODY>
 								<TR>
-									<TD class=mainMenu onClick="MenuDisplay('table_1');" style="color: red"><SPAN
-										class=span id=table_1Span >＋</SPAN> 每日打卡</TD>
+									<TD class=mainMenu onClick="MenuDisplay('table_1');"
+										style="color: red"><SPAN class=span id=table_1Span>＋</SPAN>
+										每日打卡</TD>
 								</TR>
 								<TR>
 									<TD>
@@ -131,11 +132,13 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath}/normal" target=main>－ 基础信息</A></TD>
+														href="${pageContext.request.contextPath}/normal"
+														target=main>－ 基础信息</A></TD>
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath}/daily" target=main>－ 健康打卡 </A></TD>
+														href="${pageContext.request.contextPath}/daily"
+														target=main>－ 健康打卡 </A></TD>
 												</TR>
 
 											</TBODY>
@@ -147,7 +150,7 @@ A.active {
 								</TR>
 								<TR>
 									<TD class=mainMenu onClick="MenuDisplay('table_2');"><SPAN
-										class=span id=table_2Span>＋</SPAN> 疫情上报 </TD>
+										class=span id=table_2Span>＋</SPAN> 疫情上报</TD>
 								</TR>
 								<TR>
 									<TD>
@@ -156,11 +159,13 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/jsp/linkeman/add.jsp" target=main>－ 疫情情报</A></TD>
+														href="${pageContext.request.contextPath }/ncov"
+														target=main>－ 疫情情报</A></TD>
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }" target=main>－ 发热跟进</A></TD>
+														href="${pageContext.request.contextPath }/fever"
+														target=main>－ 发热跟进</A></TD>
 												</TR>
 
 											</TBODY>
@@ -180,12 +185,19 @@ A.active {
 											cellPadding=2 width=155 align=center border=0>
 											<TBODY>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/backSchool"
 														target=main>－ 返校申请</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/outNIn"
 														target=main>－ 校园出入证申请</A></TD>
+												</TR>
+												<TR>
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/card"
+														target=main>－ 出入证</A></TD>
 												</TR>
 
 											</TBODY>
@@ -197,7 +209,7 @@ A.active {
 								</TR>
 								<TR>
 									<TD class=mainMenu onClick="MenuDisplay('table_3');"><SPAN
-										class=span id=table_3Span>＋</SPAN> 综合查询</TD>
+										class=span id=table_3Span>＋</SPAN> 历史记录查询</TD>
 								</TR>
 								<TR>
 									<TD>
@@ -205,16 +217,16 @@ A.active {
 											cellPadding=2 width=155 align=center border=0>
 											<TBODY>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
-														target=main>－ 客户信息查询</A></TD>
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/dailyList"
+														target=main>－ 健康打卡记录查询</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
-														target=main>－ 联系人信息查询</A></TD>
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/ncovList"
+														target=main>－ 疫情信息记录查询</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
-														target=main>－ 客户拜访记录查询</A></TD>
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/back"
+														target=main>－ 申请返校情况查询</A></TD>
 												</TR>
 											</TBODY>
 										</TABLE>
@@ -234,11 +246,11 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2 href="#"
-														target=main>－客户行业统计</A></TD>
+														target=main>－统计</A></TD>
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2 href="#"
-														target=main>－客户来源统计</A></TD>
+														target=main>－统计</A></TD>
 												</TR>
 
 											</TBODY>
@@ -284,7 +296,8 @@ A.active {
 			<TBODY>
 				<TR>
 					<TD width=15><IMG src="./Images/new_010.jpg" border=0></TD>
-					<TD align=middle width=180 background=./Images/new_011.jpg height=15></TD>
+					<TD align=middle width=180 background=./Images/new_011.jpg
+						height=15></TD>
 					<TD width=15><IMG src="./Images/new_012.jpg" border=0></TD>
 				</TR>
 			</TBODY>

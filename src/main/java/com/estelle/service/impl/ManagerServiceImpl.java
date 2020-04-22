@@ -19,9 +19,11 @@ public class ManagerServiceImpl implements ManagerService {
 		if (manager != null && password.equals(manager.getPwd())) {
 			return manager;
 		} else if (manager != null && !password.equals(manager.getPwd())) {
-			throw new RuntimeException("密码错误");
+			return null;
+//			throw new RuntimeException("密码错误");
 		} else {
-			throw new RuntimeException("用户名/密码错误");
+			return null;
+//			throw new RuntimeException("用户名/密码错误");
 		}
 	}
 
