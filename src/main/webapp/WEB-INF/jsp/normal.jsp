@@ -39,7 +39,7 @@
 				<font color="darkgreen">2.性别</font> <input type="radio"
 					name="gender" id="gender"
 					<c:if test="${student.gender== '男'}">checked="checked"</c:if>>男
-				<input type="radio" name="sex" id="gender"
+				<input type="radio" name="gender" id="gender"
 					<c:if test="${student.gender== '女'}">checked="checked"</c:if>>女
 			</div>
 			<div style="margin-bottom: 10px">

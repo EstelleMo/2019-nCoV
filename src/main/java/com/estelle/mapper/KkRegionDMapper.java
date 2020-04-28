@@ -20,5 +20,5 @@ public interface KkRegionDMapper {
 
     int updateByExample(@Param("record") KkRegionD record, @Param("example") KkRegionDExample example);
     
-    List<KkRegionD> selectById(String id);
+    List<KkRegionD> selectById(@Param("id")String id);
 }

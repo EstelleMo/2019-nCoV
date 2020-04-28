@@ -3,6 +3,7 @@ package com.estelle.service;
 import java.util.Date;
 import java.util.List;
 
+import com.estelle.bean.PageBean;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
 
@@ -21,4 +22,6 @@ public interface StudentService{
 	Student findStudentByNo(String no);
 
 	List<Student> findByName(String name);
+
+	PageBean findStudentList();
 }

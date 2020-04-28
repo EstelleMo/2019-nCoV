@@ -36,7 +36,7 @@
 
 <body>
 	<div>
-		<font style="color: #003366" size="10"><b>健康打卡</b></font>
+		<font style="color: #003366" size="10"><b>${student.name }的健康打卡</b></font>
 	</div>
 	<%
 		Date d = new Date();
@@ -61,25 +61,28 @@
 
 	<div style="margin-bottom: 10px; margin-top: 10px">
 
-		<c:if test="${!empty family }">
-			<form style="float: left;"
-				action="${pageContext.request.contextPath }/family">
-				<input type="submit" width="100" value="添加家庭成员" border="0"
-					style="background: url('./Images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
-			</form>
+		<c:if test="${!empty fpageBean }">
+			<c:forEach items="${fpageBean.list }" var="family">
+				<form style="float: left;"
+					action="${pageContext.request.contextPath }/showFamily">
+					<input type="submit" width="100" value="${family.name }" border="0"
+						style="background: url('./Images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+				</form>
+			</c:forEach>
 		</c:if>
 
 		<form style="float: left;"
-			action="${pageContext.request.contextPath }/family">
+			action="${pageContext.request.contextPath }/addFamily">
 			<input type="submit" width="100" value="添加家庭成员" border="0"
 				style="background: url('./Images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
 		</form>
 	</div>
-
+	<br>
+	<br>
+	<hr color="lightgrey" />
 	<form action="${pageContext.request.contextPath }/user/saveDaily">
 		<div id="preload-01" style="color: black">
 
-			<hr color="lightgrey" />
 			<font color="red">*</font> <font id="healtycode"
 				style="color: darkgreen"><b>1.健康码</b></font>
 			<div style="margin-bottom: 10px">

@@ -13,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.estelle.bean.FamHealthy;
+import com.estelle.bean.PageBean;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
+import com.estelle.service.FamilyService;
 import com.estelle.service.StudentService;
 import com.estelle.service.impl.StudentServiceImpl;
 
@@ -22,7 +25,9 @@ import com.estelle.service.impl.StudentServiceImpl;
 public class ViewController {
 
 	@Autowired
-	private StudentService userServiceImpl;
+	private StudentService sServiceImpl;
+	@Autowired
+	private FamilyService fServiceImpl;
 
 	@RequestMapping("/")
 	public ModelAndView loadIndex() {
@@ -116,9 +121,10 @@ public class ViewController {
 
 		return "ncov";
 	}
+
 	@RequestMapping("/ncovinfo")
 	public String ncovinfo() {
-		
+
 		return "checkncov";
 	}
 
@@ -127,14 +133,16 @@ public class ViewController {
 
 		return "ncovList";
 	}
+
 	@RequestMapping("/feverSub")
 	public String feverSub() {
-		
+
 		return "checkfever";
 	}
+
 	@RequestMapping("/pwdReset")
 	public String pwdReset() {
-		
+
 		return "managerReset";
 	}
 
@@ -151,15 +159,30 @@ public class ViewController {
 	}
 
 	@RequestMapping("/daily")
-	public String daily() {
-
+	public String daily(HttpServletRequest request) {
+		System.out.println("daily");
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		String sno = student.getNo();
+		PageBean fpageBean = fServiceImpl.findAllFamily(sno);
+		session.setAttribute("fpageBean", fpageBean);
 		return "daily";
 	}
 
-	@RequestMapping("/family")
+	@RequestMapping("/addFamily")
 	public String family() {
-
+		
 		return "family";
+	}
+
+	@RequestMapping("/showFamily")
+	public String familyList(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		String sno = student.getNo();
+		PageBean fpageBean = fServiceImpl.findAllFamily(sno);
+		session.setAttribute("fpageBean", fpageBean);
+		return "familyList";
 	}
 
 	@RequestMapping("/fever")
@@ -179,27 +202,43 @@ public class ViewController {
 
 		return "outNIn";
 	}
-	//查看
+
+	// 查看
 	@RequestMapping("/dailyList")
 	public String dailyList(HttpServletRequest request, HttpServletResponse respons,
 			@Param(value = "subDate") Date subDate) {
 		HttpSession session = request.getSession();
-		List<StudentHealthy> dailyList = userServiceImpl.findHistory();
+		List<StudentHealthy> dailyList = sServiceImpl.findHistory();
 		session.setAttribute("dailyList", dailyList);
 
 		return "list";
 	}
-	//查看学生打卡详情的页面
+
+	// 查看学生打卡详情的页面
 	@RequestMapping("/studentSub")
 	public String studentSub(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-
+		PageBean pageBean = sServiceImpl.findStudentList();
+		session.setAttribute("pageBean", pageBean);
 		return "checklist";
 	}
-	//修改密码跳转的页面
+
+	// 修改密码跳转的页面
 	@RequestMapping("/resetStudentPwd")
 	public String reset() {
 		return "reset";
 	}
-	
+
+	@RequestMapping("/add")
+	public String addStudent() {
+
+		return "student";
+	}
+
+	@RequestMapping("/update")
+	public String updateStudent() {
+
+		return "student";
+	}
+
 }

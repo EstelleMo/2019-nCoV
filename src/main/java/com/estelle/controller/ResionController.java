@@ -23,10 +23,11 @@ public class ResionController {
 	KkRegionDMapper kMapper;
 
 	@RequestMapping(value = "/area/getProvince")
-	public List<KkRegionD> getProvince(HttpServletRequest request, HttpServletResponse response,
-			@Param(value = "id") String id) {
+	public List<KkRegionD> getProvince(HttpServletRequest request
+			, HttpServletResponse response
+		) {
 		ModelAndView mav = new ModelAndView();
-		List<KkRegionD> areas = kMapper.selectById(id);
+		List<KkRegionD> areas = kMapper.selectById("1");
 		return areas;
 	}
 

@@ -205,12 +205,12 @@ A.active {
 														target=main>－ 学生密码重置</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="/selectList"
-														target=main>－ 信息查询</A></TD>
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/add"
+														target=main>－ 新增学生</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="#"
-														target=main>－ 记录查询</A></TD>
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/update"
+														target=main>－ 修改学生信息</A></TD>
 												</TR>
 											</TBODY>
 										</TABLE>

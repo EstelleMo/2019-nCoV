@@ -3,7 +3,7 @@
 <mapper namespace="com.estelle.mapper.StudentMapper">
 	<resultMap id="BaseResultMap" type="com.estelle.bean.Student">
 		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="no" property="no" jdbcType="INTEGER" />
+		<result column="no" property="no" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="tel" property="tel" jdbcType="VARCHAR" />
 		<result column="idcard" property="idcard" jdbcType="VARCHAR" />
@@ -17,6 +17,10 @@
 		<result column="native_place" property="nativePlace"
 			jdbcType="VARCHAR" />
 		<result column="home_det_add" property="homeDetAdd"
+			jdbcType="VARCHAR" />
+		<result column="apply_back_sch" property="applyBackSch"
+			jdbcType="VARCHAR" />
+		<result column="apply_status" property="applyStatus"
 			jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
@@ -86,7 +90,7 @@
 	<sql id="Base_Column_List">
 		id, no, name, tel, idcard, gender, real_pwd, default_pwd, role, college,
 		class_no,
-		native_place, home_det_add
+		native_place, home_det_add, apply_back_sch, apply_status
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.estelle.bean.StudentExample">
@@ -127,14 +131,17 @@
 		tel, idcard, gender,
 		real_pwd, default_pwd, role,
 		college, class_no, native_place,
-		home_det_add)
-		values (#{id,jdbcType=INTEGER}, #{no,jdbcType=INTEGER},
+		home_det_add, apply_back_sch, apply_status
+		)
+		values (#{id,jdbcType=INTEGER}, #{no,jdbcType=VARCHAR},
 		#{name,jdbcType=VARCHAR},
 		#{tel,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR},
 		#{realPwd,jdbcType=VARCHAR}, #{defaultPwd,jdbcType=VARCHAR},
 		#{role,jdbcType=VARCHAR},
 		#{college,jdbcType=VARCHAR}, #{classNo,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR},
-		#{homeDetAdd,jdbcType=VARCHAR})
+		#{homeDetAdd,jdbcType=VARCHAR}, #{applyBackSch,jdbcType=VARCHAR},
+		#{applyStatus,jdbcType=VARCHAR}
+		)
 	</insert>
 	<insert id="insertSelective"
 		parameterType="com.estelle.bean.Student">
@@ -179,13 +186,19 @@
 			<if test="homeDetAdd != null">
 				home_det_add,
 			</if>
+			<if test="applyBackSch != null">
+				apply_back_sch,
+			</if>
+			<if test="applyStatus != null">
+				apply_status,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				#{id,jdbcType=INTEGER},
 			</if>
 			<if test="no != null">
-				#{no,jdbcType=INTEGER},
+				#{no,jdbcType=VARCHAR},
 			</if>
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
@@ -220,6 +233,12 @@
 			<if test="homeDetAdd != null">
 				#{homeDetAdd,jdbcType=VARCHAR},
 			</if>
+			<if test="applyBackSch != null">
+				#{applyBackSch,jdbcType=VARCHAR},
+			</if>
+			<if test="applyStatus != null">
+				#{applyStatus,jdbcType=VARCHAR},
+			</if>
 		</trim>
 	</insert>
 	<select id="countByExample"
@@ -237,7 +256,7 @@
 				id = #{record.id,jdbcType=INTEGER},
 			</if>
 			<if test="record.no != null">
-				no = #{record.no,jdbcType=INTEGER},
+				no = #{record.no,jdbcType=VARCHAR},
 			</if>
 			<if test="record.name != null">
 				name = #{record.name,jdbcType=VARCHAR},
@@ -272,6 +291,12 @@
 			<if test="record.homeDetAdd != null">
 				home_det_add = #{record.homeDetAdd,jdbcType=VARCHAR},
 			</if>
+			<if test="record.applyBackSch != null">
+				apply_back_sch = #{record.applyBackSch,jdbcType=VARCHAR},
+			</if>
+			<if test="record.applyStatus != null">
+				apply_status = #{record.applyStatus,jdbcType=VARCHAR},
+			</if>
 		</set>
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
@@ -280,7 +305,7 @@
 	<update id="updateByExample" parameterType="map">
 		update student
 		set id = #{record.id,jdbcType=INTEGER},
-		no = #{record.no,jdbcType=INTEGER},
+		no = #{record.no,jdbcType=VARCHAR},
 		name = #{record.name,jdbcType=VARCHAR},
 		tel = #{record.tel,jdbcType=VARCHAR},
 		idcard = #{record.idcard,jdbcType=VARCHAR},
@@ -291,7 +316,9 @@
 		college = #{record.college,jdbcType=VARCHAR},
 		class_no = #{record.classNo,jdbcType=VARCHAR},
 		native_place = #{record.nativePlace,jdbcType=VARCHAR},
-		home_det_add = #{record.homeDetAdd,jdbcType=VARCHAR}
+		home_det_add = #{record.homeDetAdd,jdbcType=VARCHAR},
+		apply_back_sch = #{record.applyBackSch,jdbcType=VARCHAR},
+		apply_status = #{record.applyStatus,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -301,7 +328,7 @@
 		update student
 		<set>
 			<if test="no != null">
-				no = #{no,jdbcType=INTEGER},
+				no = #{no,jdbcType=VARCHAR},
 			</if>
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
@@ -336,13 +363,19 @@
 			<if test="homeDetAdd != null">
 				home_det_add = #{homeDetAdd,jdbcType=VARCHAR},
 			</if>
+			<if test="applyBackSch != null">
+				apply_back_sch = #{applyBackSch,jdbcType=VARCHAR},
+			</if>
+			<if test="applyStatus != null">
+				apply_status = #{applyStatus,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey"
 		parameterType="com.estelle.bean.Student">
 		update student
-		set no = #{no,jdbcType=INTEGER},
+		set no = #{no,jdbcType=VARCHAR},
 		name = #{name,jdbcType=VARCHAR},
 		tel = #{tel,jdbcType=VARCHAR},
 		idcard = #{idcard,jdbcType=VARCHAR},
@@ -353,7 +386,9 @@
 		college = #{college,jdbcType=VARCHAR},
 		class_no = #{classNo,jdbcType=VARCHAR},
 		native_place = #{nativePlace,jdbcType=VARCHAR},
-		home_det_add = #{homeDetAdd,jdbcType=VARCHAR}
+		home_det_add = #{homeDetAdd,jdbcType=VARCHAR},
+		apply_back_sch = #{applyBackSch,jdbcType=VARCHAR},
+		apply_status = #{applyStatus,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
@@ -363,5 +398,28 @@
 		<include refid="Base_Column_List" />
 		from student
 		where no = #{no}
+	</select>
+	<select id="selectByName" resultMap="BaseResultMap"
+		parameterType="String">
+		select
+		<include refid="Base_Column_List" />
+		from student
+		where name = #{name}
+	</select>
+	<select id="selectByNoNCollege" resultMap="BaseResultMap"
+		parameterType="String">
+		select
+		<include refid="Base_Column_List" />
+		from student
+		where no = #{no}
+		and college = #{college}
+	</select>
+	<select id="selectByNameNCollege" resultMap="BaseResultMap"
+		parameterType="String">
+		select
+		<include refid="Base_Column_List" />
+		from student
+		where name = #{name}
+		and college = #{college}
 	</select>
 </mapper>

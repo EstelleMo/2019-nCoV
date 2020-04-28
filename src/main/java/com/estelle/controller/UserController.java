@@ -62,6 +62,7 @@ public class UserController {
 				return mav;
 			} else { // 若学生表中找不到该用户则到managaer表中查找
 				Manager manager = manService.login(no, password);
+				System.out.println(manager.getMno());
 				session.setAttribute("manager", manager);
 				mav.setViewName("manager");
 				return mav;

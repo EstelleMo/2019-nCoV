@@ -3,7 +3,7 @@ package com.estelle.bean;
 public class Student {
     private Integer id;
 
-    private Integer no;
+    private String no;
 
     private String name;
 
@@ -27,6 +27,10 @@ public class Student {
 
     private String homeDetAdd;
 
+    private String applyBackSch;
+
+    private String applyStatus;
+
     public Integer getId() {
         return id;
     }
@@ -35,12 +39,12 @@ public class Student {
         this.id = id;
     }
 
-    public Integer getNo() {
+    public String getNo() {
         return no;
     }
 
-    public void setNo(Integer no) {
-        this.no = no;
+    public void setNo(String no) {
+        this.no = no == null ? null : no.trim();
     }
 
     public String getName() {
@@ -131,9 +135,19 @@ public class Student {
         this.homeDetAdd = homeDetAdd == null ? null : homeDetAdd.trim();
     }
 
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", no=" + no + ", name=" + name + "]";
-	}
-    
+    public String getApplyBackSch() {
+        return applyBackSch;
+    }
+
+    public void setApplyBackSch(String applyBackSch) {
+        this.applyBackSch = applyBackSch == null ? null : applyBackSch.trim();
+    }
+
+    public String getApplyStatus() {
+        return applyStatus;
+    }
+
+    public void setApplyStatus(String applyStatus) {
+        this.applyStatus = applyStatus == null ? null : applyStatus.trim();
+    }
 }
