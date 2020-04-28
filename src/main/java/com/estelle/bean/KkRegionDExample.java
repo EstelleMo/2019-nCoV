@@ -114,52 +114,52 @@ public class KkRegionDExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Double value) {
+        public Criteria andIdEqualTo(Integer value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Double value) {
+        public Criteria andIdNotEqualTo(Integer value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Double value) {
+        public Criteria andIdGreaterThan(Integer value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Double value) {
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Double value) {
+        public Criteria andIdLessThan(Integer value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Double value) {
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Double> values) {
+        public Criteria andIdIn(List<Integer> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Double> values) {
+        public Criteria andIdNotIn(List<Integer> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Double value1, Double value2) {
+        public Criteria andIdBetween(Integer value1, Integer value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Double value1, Double value2) {
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -314,52 +314,52 @@ public class KkRegionDExample {
             return (Criteria) this;
         }
 
-        public Criteria andFidEqualTo(Double value) {
+        public Criteria andFidEqualTo(Integer value) {
             addCriterion("fid =", value, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidNotEqualTo(Double value) {
+        public Criteria andFidNotEqualTo(Integer value) {
             addCriterion("fid <>", value, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidGreaterThan(Double value) {
+        public Criteria andFidGreaterThan(Integer value) {
             addCriterion("fid >", value, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidGreaterThanOrEqualTo(Double value) {
+        public Criteria andFidGreaterThanOrEqualTo(Integer value) {
             addCriterion("fid >=", value, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidLessThan(Double value) {
+        public Criteria andFidLessThan(Integer value) {
             addCriterion("fid <", value, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidLessThanOrEqualTo(Double value) {
+        public Criteria andFidLessThanOrEqualTo(Integer value) {
             addCriterion("fid <=", value, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidIn(List<Double> values) {
+        public Criteria andFidIn(List<Integer> values) {
             addCriterion("fid in", values, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidNotIn(List<Double> values) {
+        public Criteria andFidNotIn(List<Integer> values) {
             addCriterion("fid not in", values, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidBetween(Double value1, Double value2) {
+        public Criteria andFidBetween(Integer value1, Integer value2) {
             addCriterion("fid between", value1, value2, "fid");
             return (Criteria) this;
         }
 
-        public Criteria andFidNotBetween(Double value1, Double value2) {
+        public Criteria andFidNotBetween(Integer value1, Integer value2) {
             addCriterion("fid not between", value1, value2, "fid");
             return (Criteria) this;
         }
@@ -434,73 +434,73 @@ public class KkRegionDExample {
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnIsNull() {
-            addCriterion("region_shortname_en is null");
+        public Criteria andShortNameIsNull() {
+            addCriterion("short_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnIsNotNull() {
-            addCriterion("region_shortname_en is not null");
+        public Criteria andShortNameIsNotNull() {
+            addCriterion("short_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnEqualTo(String value) {
-            addCriterion("region_shortname_en =", value, "regionShortnameEn");
+        public Criteria andShortNameEqualTo(String value) {
+            addCriterion("short_name =", value, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnNotEqualTo(String value) {
-            addCriterion("region_shortname_en <>", value, "regionShortnameEn");
+        public Criteria andShortNameNotEqualTo(String value) {
+            addCriterion("short_name <>", value, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnGreaterThan(String value) {
-            addCriterion("region_shortname_en >", value, "regionShortnameEn");
+        public Criteria andShortNameGreaterThan(String value) {
+            addCriterion("short_name >", value, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnGreaterThanOrEqualTo(String value) {
-            addCriterion("region_shortname_en >=", value, "regionShortnameEn");
+        public Criteria andShortNameGreaterThanOrEqualTo(String value) {
+            addCriterion("short_name >=", value, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnLessThan(String value) {
-            addCriterion("region_shortname_en <", value, "regionShortnameEn");
+        public Criteria andShortNameLessThan(String value) {
+            addCriterion("short_name <", value, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnLessThanOrEqualTo(String value) {
-            addCriterion("region_shortname_en <=", value, "regionShortnameEn");
+        public Criteria andShortNameLessThanOrEqualTo(String value) {
+            addCriterion("short_name <=", value, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnLike(String value) {
-            addCriterion("region_shortname_en like", value, "regionShortnameEn");
+        public Criteria andShortNameLike(String value) {
+            addCriterion("short_name like", value, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnNotLike(String value) {
-            addCriterion("region_shortname_en not like", value, "regionShortnameEn");
+        public Criteria andShortNameNotLike(String value) {
+            addCriterion("short_name not like", value, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnIn(List<String> values) {
-            addCriterion("region_shortname_en in", values, "regionShortnameEn");
+        public Criteria andShortNameIn(List<String> values) {
+            addCriterion("short_name in", values, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnNotIn(List<String> values) {
-            addCriterion("region_shortname_en not in", values, "regionShortnameEn");
+        public Criteria andShortNameNotIn(List<String> values) {
+            addCriterion("short_name not in", values, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnBetween(String value1, String value2) {
-            addCriterion("region_shortname_en between", value1, value2, "regionShortnameEn");
+        public Criteria andShortNameBetween(String value1, String value2) {
+            addCriterion("short_name between", value1, value2, "shortName");
             return (Criteria) this;
         }
 
-        public Criteria andRegionShortnameEnNotBetween(String value1, String value2) {
-            addCriterion("region_shortname_en not between", value1, value2, "regionShortnameEn");
+        public Criteria andShortNameNotBetween(String value1, String value2) {
+            addCriterion("short_name not between", value1, value2, "shortName");
             return (Criteria) this;
         }
 

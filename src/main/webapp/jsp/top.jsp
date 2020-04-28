@@ -52,9 +52,9 @@ P {
 		<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=10><IMG src="./Images/new_001.jpg" border=0></TD>
-					<TD background=./Images/new_002.jpg><FONT size=5><B>新冠肺炎疫情防控信息上报中心</B></FONT></TD>
-					<TD background=./Images/new_002.jpg>
+					<TD width=10><IMG src="./images/new_001.jpg" border=0></TD>
+					<TD background=./images/new_002.jpg><FONT size=5><B>新冠肺炎疫情防控信息上报中心</B></FONT></TD>
+					<TD background=./images/new_002.jpg>
 						<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
 							<TBODY>
 								<TR>
@@ -83,7 +83,7 @@ P {
 							</TBODY>
 						</TABLE>
 					</TD>
-					<TD width=10><IMG src="./Images/new_003.jpg" border=0></TD>
+					<TD width=10><IMG src="./images/new_003.jpg" border=0></TD>
 				</TR>
 			</TBODY>
 		</TABLE>

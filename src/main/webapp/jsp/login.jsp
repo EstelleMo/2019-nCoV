@@ -10,15 +10,15 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<link rel="stylesheet" href="./Css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="./Css/zerogrid.css">
-<link rel="stylesheet" href="./Css/style.css">
-<link rel="stylesheet" href="./Css/responsiveslides.css" />
-<link rel="stylesheet" href="./Css/responsive.css">
-<link href='./Images/favicon.ico' rel='icon' type='image/x-icon' />
+<link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="./css/zerogrid.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/responsiveslides.css" />
+<link rel="stylesheet" href="./css/responsive.css">
+<link href='./images/favicon.ico' rel='icon' type='image/x-icon' />
 
-<script src="../Js/jquery.min.js"></script>
-<script src="../Js/responsiveslides.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/responsiveslides.js"></script>
 <style>
 body {
 	margin-top: 20px;
@@ -62,7 +62,7 @@ font {
 	});
 	</script>
 	<div class="container"
-		style="width: 100%; height: 460px; background: #FF2C4C url('Images/01.jpg') no-repeat; background-size: 100%;">
+		style="width: 100%; height: 460px; background: #FF2C4C url('images/01.jpg') no-repeat; background-size: 100%;">
 		<div class="row">
 			<div class="col-md-7">
 				<!--  -->
@@ -122,7 +122,7 @@ font {
 							<div class="col-sm-offset-2 col-sm-10">
 								<input type="submit" width="100" value="登录" name="submit"
 									border="0"
-									style="background: url('./Images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+									style="background: url('./images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
 							</div>
 						</div>
 					</form>

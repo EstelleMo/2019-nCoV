@@ -28,21 +28,21 @@ public class ResionController {
 		) {
 		ModelAndView mav = new ModelAndView();
 		List<KkRegionD> areas = kMapper.selectById("1");
+		System.out.println(areas);
 		return areas;
 	}
 
 	@RequestMapping(value = "/area/getCity")
 	public List<KkRegionD> getCity(HttpServletRequest request, HttpServletResponse response,
 			@Param(value = "id") String id) {
-		ModelAndView mav = new ModelAndView();
 		List<KkRegionD> areas = kMapper.selectById(id);
+		System.out.println(areas);
 		return areas;
 	}
 
 	@RequestMapping(value = "/area/getArea")
 	public List<KkRegionD> getArea(HttpServletRequest request, HttpServletResponse response,
 			@Param(value = "id") String id) {
-		ModelAndView mav = new ModelAndView();
 		List<KkRegionD> areas = kMapper.selectById(id);
 		System.out.println(areas);
 		return areas;

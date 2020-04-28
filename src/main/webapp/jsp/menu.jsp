@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD id=Head1>
@@ -106,23 +106,24 @@ A.active {
 		<TABLE cellSpacing=0 cellPadding=0 width=210 align=center border=0>
 			<TBODY>
 				<TR>
-					<TD width=15><IMG src="./Images/new_005.jpg" border=0></TD>
-					<TD align=middle width=180 background=./Images/new_006.jpg height=35><B>管理员
-							－功能菜单</B></TD>
-					<TD width=15><IMG src="./Images/new_007.jpg" border=0></TD>
+					<TD width=15><IMG src="./images/new_005.jpg" border=0></TD>
+					<TD align=middle width=180 background=./images/new_006.jpg
+						height=35><B>学生填报 －功能菜单</B></TD>
+					<TD width=15><IMG src="./images/new_007.jpg" border=0></TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 		<TABLE cellSpacing=0 cellPadding=0 width=210 align=center border=0>
 			<TBODY>
 				<TR>
-					<TD width=15 background=./Images/new_008.jpg></TD>
+					<TD width=15 background=./images/new_008.jpg></TD>
 					<TD vAlign=top width=180 bgColor=#ffffff>
 						<TABLE cellSpacing=0 cellPadding=3 width=165 align=center border=0>
 							<TBODY>
 								<TR>
-									<TD class=mainMenu onClick="MenuDisplay('table_1');"><SPAN
-										class=span id=table_1Span>＋</SPAN> 查看每日打卡</TD>
+									<TD class=mainMenu onClick="MenuDisplay('table_1');"
+										style="color: red"><SPAN class=span id=table_1Span>＋</SPAN>
+										每日打卡</TD>
 								</TR>
 								<TR>
 									<TD>
@@ -131,7 +132,13 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath}/studentSub" target=main>－ 学生打卡情况</A></TD>
+														href="${pageContext.request.contextPath}/normal"
+														target=main>－ 基础信息</A></TD>
+												</TR>
+												<TR>
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath}/daily"
+														target=main>－ 健康打卡 </A></TD>
 												</TR>
 
 											</TBODY>
@@ -139,11 +146,11 @@ A.active {
 									</TD>
 								</TR>
 								<TR>
-									<TD background=./Images/new_027.jpg height=1></TD>
+									<TD background=./images/new_027.jpg height=1></TD>
 								</TR>
 								<TR>
 									<TD class=mainMenu onClick="MenuDisplay('table_2');"><SPAN
-										class=span id=table_2Span>＋</SPAN> 疫情上报 </TD>
+										class=span id=table_2Span>＋</SPAN> 疫情上报</TD>
 								</TR>
 								<TR>
 									<TD>
@@ -152,11 +159,13 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/ncovinfo" target=main>－ 疫情情报</A></TD>
+														href="${pageContext.request.contextPath }/ncov"
+														target=main>－ 疫情情报</A></TD>
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/feverSub" target=main>－ 发热跟进提交情况</A></TD>
+														href="${pageContext.request.contextPath }/fever"
+														target=main>－ 发热跟进</A></TD>
 												</TR>
 
 											</TBODY>
@@ -164,11 +173,11 @@ A.active {
 									</TD>
 								</TR>
 								<TR>
-									<TD background=./Images/new_027.jpg height=1></TD>
+									<TD background=./images/new_027.jpg height=1></TD>
 								</TR>
 								<TR>
 									<TD class=mainMenu onClick="MenuDisplay('table_5');"><SPAN
-										class=span id=table_5Span>＋</SPAN> 待审批消息</TD>
+										class=span id=table_5Span>＋</SPAN> 申请</TD>
 								</TR>
 								<TR>
 									<TD>
@@ -176,12 +185,19 @@ A.active {
 											cellPadding=2 width=155 align=center border=0>
 											<TBODY>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="/backSchApp"
-														target=main>－ 学生返校申请</A></TD>
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/backSchool"
+														target=main>－ 返校申请</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="/codeApp"
-														target=main>－ 学生出入证申请</A></TD>
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/outNIn"
+														target=main>－ 校园出入证申请</A></TD>
+												</TR>
+												<TR>
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/card"
+														target=main>－ 出入证</A></TD>
 												</TR>
 
 											</TBODY>
@@ -189,11 +205,11 @@ A.active {
 									</TD>
 								</TR>
 								<TR>
-									<TD background=./Images/new_027.jpg height=1></TD>
+									<TD background=./images/new_027.jpg height=1></TD>
 								</TR>
 								<TR>
 									<TD class=mainMenu onClick="MenuDisplay('table_3');"><SPAN
-										class=span id=table_3Span>＋</SPAN> 综合管理</TD>
+										class=span id=table_3Span>＋</SPAN> 历史记录查询</TD>
 								</TR>
 								<TR>
 									<TD>
@@ -201,23 +217,23 @@ A.active {
 											cellPadding=2 width=155 align=center border=0>
 											<TBODY>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/pwdReset"
-														target=main>－ 学生密码重置</A></TD>
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/dailyList"
+														target=main>－ 健康打卡记录查询</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/add"
-														target=main>－ 新增学生</A></TD>
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/ncovList"
+														target=main>－ 疫情信息记录查询</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/update"
-														target=main>－ 修改学生信息</A></TD>
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/back"
+														target=main>－ 申请返校情况查询</A></TD>
 												</TR>
 											</TBODY>
 										</TABLE>
 									</TD>
 								</TR>
 								<TR>
-									<TD background=./Images/new_027.jpg height=1></TD>
+									<TD background=./images/new_027.jpg height=1></TD>
 								</TR>
 								<TR>
 									<TD class=mainMenu onClick="MenuDisplay('table_4');"><SPAN
@@ -230,11 +246,11 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2 href="#"
-														target=main>－学生所在地区统计</A></TD>
+														target=main>－统计</A></TD>
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2 href="#"
-														target=main>－学生户籍统计</A></TD>
+														target=main>－统计</A></TD>
 												</TR>
 
 											</TBODY>
@@ -242,7 +258,7 @@ A.active {
 									</TD>
 								</TR>
 								<TR>
-									<TD background=./Images/new_027.jpg height=1></TD>
+									<TD background=./images/new_027.jpg height=1></TD>
 								</TR>
 								<TR>
 									<TD class=mainMenu onClick="MenuDisplay('table_6');"><SPAN
@@ -272,16 +288,17 @@ A.active {
 							</TBODY>
 						</TABLE>
 					</TD>
-					<TD width=15 background=./Images/new_009.jpg></TD>
+					<TD width=15 background=./images/new_009.jpg></TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 		<TABLE cellSpacing=0 cellPadding=0 width=210 align=center border=0>
 			<TBODY>
 				<TR>
-					<TD width=15><IMG src="./Images/new_010.jpg" border=0></TD>
-					<TD align=middle width=180 background=./Images/new_011.jpg height=15></TD>
-					<TD width=15><IMG src="./Images/new_012.jpg" border=0></TD>
+					<TD width=15><IMG src="./images/new_010.jpg" border=0></TD>
+					<TD align=middle width=180 background=./images/new_011.jpg
+						height=15></TD>
+					<TD width=15><IMG src="./images/new_012.jpg" border=0></TD>
 				</TR>
 			</TBODY>
 		</TABLE>

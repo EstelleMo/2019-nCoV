@@ -58,7 +58,7 @@ public class UserController {
 			if (student != null) {
 				session.setAttribute("student", student);
 				String sname = student.getName();
-				mav.setViewName("test"); // 要改成 index
+				mav.setViewName("index"); 
 				return mav;
 			} else { // 若学生表中找不到该用户则到managaer表中查找
 				Manager manager = manService.login(no, password);

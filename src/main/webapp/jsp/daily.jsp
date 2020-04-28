@@ -14,14 +14,14 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
 <!-- Google web font "Open Sans" -->
-<link rel="stylesheet" href="../Css/calendar.css">
+<link rel="stylesheet" href="../css/calendar.css">
 
-<link rel="stylesheet" href="../Css/fontawesome-all.min.css">
-<link rel="stylesheet" href="../Css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../Css/magnific-popup.css" />
+<link rel="stylesheet" href="../css/fontawesome-all.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" />
 <link rel="stylesheet" type="text/css" href="../slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
-<link rel="stylesheet" href="../Css/menu.css">
+<link rel="stylesheet" href="../css/menu.css">
 
 <style typte="text/css">
 #tt: {
@@ -66,7 +66,7 @@
 				<form style="float: left;"
 					action="${pageContext.request.contextPath }/showFamily">
 					<input type="submit" width="100" value="${family.name }" border="0"
-						style="background: url('./Images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+						style="background: url('./images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
 				</form>
 			</c:forEach>
 		</c:if>
@@ -74,7 +74,7 @@
 		<form style="float: left;"
 			action="${pageContext.request.contextPath }/addFamily">
 			<input type="submit" width="100" value="添加家庭成员" border="0"
-				style="background: url('./Images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+				style="background: url('./images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
 		</form>
 	</div>
 	<br>
@@ -203,13 +203,13 @@
 	<div id="preload-03"></div>
 	<div id="preload-04"></div>
 
-	<script type="text/javascript" src="./Js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="./Js/jquery.magnific-popup.min.js"></script>
-	<script type="text/javascript" src="./Js/jquery.backstretch.min.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.magnific-popup.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.backstretch.min.js"></script>
 	<script type="text/javascript" src="./slick/slick.min.js"></script>
-	<link rel="stylesheet" href="./Css/dcalendar.picker.css" />
-	<script type="text/javascript" src="./Js/jquery.min.js"></script>
-	<script type="text/javascript" src="./Js/dcalendar.picker.js"></script>
+	<link rel="stylesheet" href="./css/dcalendar.picker.css" />
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/dcalendar.picker.js"></script>
 
 
 

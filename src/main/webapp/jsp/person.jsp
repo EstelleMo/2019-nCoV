@@ -11,15 +11,15 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
 <!-- Google web font "Open Sans" -->
-<link rel="stylesheet" href="../Css/calendar.css">
+<link rel="stylesheet" href="../css/calendar.css">
 
-<link rel="stylesheet" href="../Css/fontawesome-all.min.css">
-<link rel="stylesheet" href="../Css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../Css/magnific-popup.css" />
+<link rel="stylesheet" href="../css/fontawesome-all.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" />
 <link rel="stylesheet" type="text/css" href="../slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
-<!--<link rel="stylesheet" href="../Css/tooplate-style.css"> -->
-<link rel="stylesheet" href="../Css/menu.css">
+<!--<link rel="stylesheet" href="../css/tooplate-style.css"> -->
+<link rel="stylesheet" href="../css/menu.css">
 
 <script>
 	//选择图片，马上预览
@@ -187,7 +187,7 @@
 
 
   <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-  <script src="../Js/calendar.js"></script>
+  <script src="../js/calendar.js"></script>
 
 
 	<!-- Page Content -->

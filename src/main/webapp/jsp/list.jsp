@@ -6,12 +6,12 @@
 <head>
 <TITLE>客户列表</TITLE>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<LINK href="${pageContext.request.contextPath }/Css/Style.css"
+<LINK href="${pageContext.request.contextPath }/css/Style.css"
 	type=text/css rel=stylesheet>
-<LINK href="${pageContext.request.contextPath }/Css/Manage.css"
+<LINK href="${pageContext.request.contextPath }/css/Manage.css"
 	type=text/css rel=stylesheet>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/Js/jquery-1.11.0.min.js"></script>
+	src="${pageContext.request.contextPath }/js/jquery-1.11.0.min.js"></script>
 <SCRIPT language=javascript>
 	function to_page(page) {
 		if (page) {
@@ -38,17 +38,17 @@
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=15><IMG src="./Images/new_019.jpg" border=0></TD>
-					<TD width="100%" background="./Images/new_020.jpg" height=20></TD>
-					<TD width=15><IMG src="./Images/new_021.jpg" border=0></TD>
+					<TD width=15><IMG src="./images/new_019.jpg" border=0></TD>
+					<TD width="100%" background="./images/new_020.jpg" height=20></TD>
+					<TD width=15><IMG src="./images/new_021.jpg" border=0></TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=15 background=./Images/new_022.jpg><IMG
-						src="./Images/new_022.jpg" border=0></TD>
+					<TD width=15 background=./images/new_022.jpg><IMG
+						src="./images/new_022.jpg" border=0></TD>
 					<TD vAlign=top width="100%" bgColor=#ffffff>
 						<TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
 							<TR>
@@ -152,18 +152,18 @@
 							</TBODY>
 						</TABLE>
 					</TD>
-					<TD width=15 background="./Images/new_023.jpg"><IMG
-						src="./Images/new_023.jpg" border=0></TD>
+					<TD width=15 background="./images/new_023.jpg"><IMG
+						src="./images/new_023.jpg" border=0></TD>
 				</TR>
 			</TBODY>
 		</TABLE>
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
-					<TD width=15><IMG src="./Images/new_024.jpg" border=0></TD>
-					<TD align=middle width="100%" background="./Images/new_025.jpg"
+					<TD width=15><IMG src="./images/new_024.jpg" border=0></TD>
+					<TD align=middle width="100%" background="./images/new_025.jpg"
 						height=15></TD>
-					<TD width=15><IMG src="./Images/new_026.jpg" border=0></TD>
+					<TD width=15><IMG src="./images/new_026.jpg" border=0></TD>
 				</TR>
 			</TBODY>
 		</TABLE>

@@ -12,14 +12,14 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
 <!-- Google web font "Open Sans" -->
-<link rel="stylesheet" href="../Css/calendar.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/calendar.css">
 
-<link rel="stylesheet" href="../Css/fontawesome-all.min.css">
-<link rel="stylesheet" href="../Css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../Css/magnific-popup.css" />
-<link rel="stylesheet" type="text/css" href="../slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
-<link rel="stylesheet" href="../Css/menu.css">
+<link rel="stylesheet" href="./css/fontawesome-all.min.css">
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/magnific-popup.css" />
+<link rel="stylesheet" type="text/css" href="./slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css" />
+<link rel="stylesheet" href="./css/menu.css">
 
 </head>
 <body>
@@ -130,84 +130,70 @@
 	<div id="preload-03"></div>
 	<div id="preload-04"></div>
 
-	<script type="text/javascript" src="./Js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="./Js/jquery.magnific-popup.min.js"></script>
-	<script type="text/javascript" src="./Js/jquery.backstretch.min.js"></script>
-	<script type="text/javascript" src="./slick/slick.min.js"></script>
-	<!-- Slick Carousel -->
+	<script rel="stylesheet" src="${pageContext.request.contextPath }/js/jquery.min2"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/slick/slick.min.js"></script>
 
 	<script type="text/javascript">
-		/*加载省下拉选*/
-		$(function() {
-			$.ajax({
-				type : "post",
-				url : "${pageContext.request.contextPath}/area/getProvince",
-				success : function(data) {
-					for (var i = 0; i < data.length; i++) {
-						$('#province_code').append(
-								"<option value='" + data[i].id + "' >"
-										+ data[i].regionName + "</option>");
-					}
-				}/* ,
-				error : function() {
-					alert("加载省失败");
-				} */
-			});
-		});
-		/*加载市下拉选*/
-		function getCity() {
-			var id = $("#province_code").val();
-			$("#city_code").empty();
-			$("#area_code").empty();
-			$.ajax({
-				type : "post",
-				url : "${pageContext.request.contextPath}/area/getCity",
-				data : {
-					"id" : id
-				},
-				success : function(data) {
-					$('#city_code').append(
-							"<option value='' selected='selected' >" + '请选择'
-									+ "</option>");
-					$('#area_code').append(
-							"<option value='' selected='selected' >" + '请选择'
-									+ "</option>");
-					for (var i = 0; i < data.length; i++) {
-						$('#city_code').append(
-								"<option value='" + data[i].id +"' >"
-										+ data[i].regionName + "</option>");
-					}
-				}/* ,
-				error : function() {
-					alert("加载市失败"); */
-				}
-			});
-		};
-		/*加载地区下拉选*/
-		function getArea() {
-			var id = $("#city_code").val();
-			$("#area_code").empty();
-			$.ajax({
-				type : "post",
-				url : "${pageContext.request.contextPath}/area/getArea",
-				data : {
-					"id" : id
-				},
-				success : function(data) {
-					$('#area_code').append(
-							"<option value='' selected='selected' >" + '请选择'
-									+ "</option>");
-					for (var i = 0; i < data.length; i++) {
-						$('#area_code').append(
-								"<option value='" + data[i].id + "' >"
-										+ data[i].regionName + "</option>");
-					}
-				}/* ,
-				error : function() {
-					alert("加载区失败");
-				} */
-			});
-		}
+    /*加载省下拉选*/
+    alert(1);
+    $(function () {
+    	alert(2)
+    	
+        $.ajax({
+            type: "post",
+            url: "${pageContext.request.contextPath}/area/getProvince",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $('#province_code').append("<option value='" + data[i].id + "' >" + data[i].aName + "</option>");
+                }
+            },
+            error: function () {
+                alert("加载省失败");
+            }
+        });
+    });
+    /*加载市下拉选*/
+    function getCity() {
+        var id = $("#province_code").val();
+        $("#city_code").empty();
+        $("#area_code").empty();
+        $.ajax({
+            type: "post",
+            url: "${pageContext.request.contextPath}/area/getCity",
+            data: {"id": id},
+            success: function (data) {
+                $('#city_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                $('#area_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                for (var i = 0; i < data.length; i++) {
+                    $('#city_code').append("<option value='" + data[i].id + "' >" + data[i].aName + "</option>");
+                }
+            },
+            error: function () {
+                alert("加载市失败");
+            }
+        });
+    }
+    ;
+    /*加载地区下拉选*/
+    function getArea() {
+        var id = $("#city_code").val();
+        $("#area_code").empty();
+        $.ajax({
+            type: "post",
+            url: "${pageContext.request.contextPath}/area/getArea",
+            data: {"id": id},
+            success: function (data) {
+                $('#area_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                for (var i = 0; i < data.length; i++) {
+                    $('#area_code').append("<option value='" + data[i].id + "' >" + data[i].aName + "</option>");
+                }
+            },
+            error: function () {
+                alert("加载区失败");
+            }
+        });
+    }
 	</script>
 </body>
 </html>
