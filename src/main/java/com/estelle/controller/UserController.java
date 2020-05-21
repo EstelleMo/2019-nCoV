@@ -8,6 +8,8 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.taglibs.standard.extra.spath.SPathFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -30,11 +33,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.estelle.bean.Epidemic;
+import com.estelle.bean.FamHealthy;
 import com.estelle.bean.Family;
+import com.estelle.bean.Fever;
 import com.estelle.bean.Manager;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
+import com.estelle.service.EpidemicService;
 import com.estelle.service.FamilyService;
+import com.estelle.service.FeverService;
 import com.estelle.service.ManagerService;
 import com.estelle.service.StudentService;
 import com.estelle.util.PwdUtil;
@@ -49,6 +57,10 @@ public class UserController {
 	private ManagerService manService;
 	@Autowired
 	private FamilyService familyService;
+	@Autowired
+	private FeverService feverService;
+	@Autowired
+	private EpidemicService epidemicService;
 
 	@RequestMapping("/login")
 	public @ResponseBody ModelAndView studentLogin(HttpServletRequest request, HttpServletResponse response,
@@ -80,15 +92,6 @@ public class UserController {
 		}
 		mav.setViewName("login");
 		return mav;
-	}
-
-	@RequestMapping("/dailyList")
-	public String dailyList(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "subDate", required = false) Date subDate) {
-
-		System.out.println(subDate);
-
-		return "success";
 	}
 
 	@RequestMapping("/backApp")
@@ -139,53 +142,83 @@ public class UserController {
 			studentHealthy.setIsNcov(isNcov);
 			studentHealthy.setHealthyStu(healthyStu);
 			studentHealthy.setIsInSch(isInSch);
-			
+
+			String subDate = saveSubDate();
+			studentHealthy.setSubDate(subDate);
+
 			int i = stuService.saveDaily(studentHealthy);
 			return "success";
 		}
 		return "success";
 	}
 
-	@RequestMapping("/addFamily")
-	public String addFamily(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "gender", required = false) String gender,
-			@RequestParam(value = "relationship", required = false) String relationship) {
+	@RequestMapping("/saveFamDaily")
+	public String saveFamDaily(HttpServletRequest request, HttpServletResponse response
+
+	) {
+		System.out.println("保存家庭成员每日打卡");
+		HttpSession session = request.getSession();
+		Student s = (Student) session.getAttribute("student");
+		
+		String subDate = saveSubDate();
+		
+		FamHealthy fh = new FamHealthy();
+		fh.setSubDate(subDate);
+		fh.setSname(s.getName());
+		fh.setSno(s.getNo());
+		
+		familyService.saveFamilyDaily(fh);
+
+		return "success";
+	}
+
+	@RequestMapping("/saveFever")
+	public String saveFever(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "name", required = false) String name
+	) {
+		System.out.println("保存发热跟进表");
 		HttpSession session = request.getSession();
 		Student student = (Student) session.getAttribute("student");
-		Family family = new Family();
-		family.setSname(student.getName());
-		family.setSno(student.getNo());
-		family.setGender(gender);
-		family.setName(name);
-		family.setRelationship(relationship);
-
-		int i = familyService.saveFamily(family);
-		return "success";
-	}
-
-	@RequestMapping("/saveFamDaily")
-	public String saveFamDaily(HttpServletRequest request, HttpServletResponse response) {
-
-		return "success";
-	}
-	@RequestMapping("/saveFever")
-	public String saveFever(HttpServletRequest request, HttpServletResponse response) {
 		
+		Fever fever = new Fever();
+		fever.setName(name);
+		
+		String subDate = saveSubDate();
+		fever.setSubDate(subDate);
+		
+		int i = feverService.saveFever(fever);
 		return "success";
 	}
+
 	@RequestMapping("/saveEpidemic")
 	public String saveEpidemic(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "healthyStu", required = false) String healthyStu,
 			@RequestParam(value = "isHb", required = false) String isHb,
-			@RequestParam(value = "isclose", required = false) String isclose,
+			@RequestParam(value = "iscloser", required = false) String iscloser,
 			@RequestParam(value = "isTouch", required = false) String isTouch,
 			@RequestParam(value = "healthyOfFam", required = false) String healthyOfFam,
 			@RequestParam(value = "isIll", required = false) String isIll,
 			@RequestParam(value = "isNcov", required = false) String isNcov,
-			@RequestParam(value = "isCure", required = false) String isCure
-			) {
+			@RequestParam(value = "isLeave", required = false) String isLeave,
+			@RequestParam(value = "isCure", required = false) String isCure) {
 		System.out.println("保存疫情防控信息");
+		Student s = (Student) request.getAttribute("student");
+		Epidemic epidemic = new Epidemic();
+		epidemic.setName(s.getName());
+		epidemic.setNo(s.getNo());
+		String currAdd = "";
+		epidemic.setCurrAdd(currAdd);
+		epidemic.setHealthyOfFam(healthyOfFam);
+		epidemic.setHealthyStu(healthyStu);
+		epidemic.setIscloser(iscloser);
+		epidemic.setIsHb(isHb);
+		epidemic.setIsLeave(isLeave);
+		epidemic.setIsTouch(isTouch);
+
+		String subDate = saveSubDate();
+		epidemic.setSubDate(subDate);
+		
+		int i = epidemicService.saveEpidemic(epidemic);
 		return "success";
 	}
 
@@ -206,6 +239,31 @@ public class UserController {
 			e.printStackTrace();
 
 		}
+	}
+
+	@RequestMapping("/addFamily")
+	public String addFamily(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "gender", required = false) String gender,
+			@RequestParam(value = "relationship", required = false) String relationship) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		Family family = new Family();
+		family.setSname(student.getName());
+		family.setSno(student.getNo());
+		family.setGender(gender);
+		family.setName(name);
+		family.setRelationship(relationship);
+
+		int i = familyService.saveFamily(family);
+		return "success";
+	}
+
+	private String saveSubDate() {
+		Date date = new Date();
+		DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String subDate = simpleDateFormat.format(date);
+		return subDate;
 	}
 
 	/* 绘制验证码 */
