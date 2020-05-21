@@ -52,7 +52,9 @@ public class UserController {
 
 	@RequestMapping("/login")
 	public @ResponseBody ModelAndView studentLogin(HttpServletRequest request, HttpServletResponse response,
-			@Param("no") String no, @Param("password") String password, @Param("checkcode") String checkcode) {
+			@RequestParam(value = "no", required = false) String no,
+			@RequestParam(value = "password", required = false) String password,
+			@RequestParam(value = "checkcode", required = false) String checkcode) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String check = (String) session.getAttribute("verifyCodeValue");
@@ -82,7 +84,7 @@ public class UserController {
 
 	@RequestMapping("/dailyList")
 	public String dailyList(HttpServletRequest request, HttpServletResponse response,
-			@Param(value = "subDate") Date subDate) {
+			@RequestParam(value = "subDate", required = false) Date subDate) {
 
 		System.out.println(subDate);
 
@@ -97,8 +99,9 @@ public class UserController {
 
 	@RequestMapping("/saveNormal")
 	public @ResponseBody() String saveNormal(HttpServletRequest request, HttpServletResponse response,
-			@Param(value = "nativePlace") String nativePlace, @Param(value = "homeDetAdd") String homeDetAdd,
-			@Param(value = "tel") String tel, @Param(value = "idcard") String idcard) {
+			@RequestParam(value = "homeDetAdd", required = false) String homeDetAdd,
+			@RequestParam(value = "tel", required = false) String tel,
+			@RequestParam(value = "idcard", required = false) String idcard) {
 		HttpSession session = request.getSession();
 		Student s = (Student) session.getAttribute("student");
 		Student student = new Student();
@@ -111,8 +114,35 @@ public class UserController {
 	}
 
 	@RequestMapping("/saveDaily")
-	public String saveDaily(HttpServletRequest request, HttpServletResponse response) {
-
+	public @ResponseBody String saveDaily(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "healthyCode", required = false) String healthyCode,
+			@RequestParam(value = "amTw", required = false) String amTw,
+			@RequestParam(value = "pmTw", required = false) String pmTw,
+			@RequestParam(value = "isInSch", required = false) String isInSch,
+			@RequestParam(value = "healthyStu", required = false) String healthyStu,
+			@RequestParam(value = "isIll", required = false) String isIll,
+			@RequestParam(value = "isNcov", required = false) String isNcov,
+			@RequestParam(value = "isCure", required = false) String isCure,
+			@RequestParam(value = "isAspect", required = false) String isAspect) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		if (student != null) {
+			StudentHealthy studentHealthy = new StudentHealthy();
+			studentHealthy.setNo(student.getNo());
+			studentHealthy.setName(student.getName());
+			studentHealthy.setHealthyCode(healthyCode);
+			studentHealthy.setAmTw(amTw);
+			studentHealthy.setPmTw(pmTw);
+			studentHealthy.setIsAspect(isAspect);
+			studentHealthy.setIsIll(isIll);
+			studentHealthy.setIsCure(isCure);
+			studentHealthy.setIsNcov(isNcov);
+			studentHealthy.setHealthyStu(healthyStu);
+			studentHealthy.setIsInSch(isInSch);
+			
+			int i = stuService.saveDaily(studentHealthy);
+			return "success";
+		}
 		return "success";
 	}
 
@@ -131,13 +161,22 @@ public class UserController {
 		family.setRelationship(relationship);
 
 		int i = familyService.saveFamily(family);
-		System.out.println("成功添加family");
 		return "success";
 	}
 
 	@RequestMapping("/saveFamDaily")
 	public String saveFamDaily(HttpServletRequest request, HttpServletResponse response) {
 
+		return "success";
+	}
+	@RequestMapping("/saveFever")
+	public String saveFever(HttpServletRequest request, HttpServletResponse response) {
+		
+		return "success";
+	}
+	@RequestMapping("/saveEpidemic")
+	public String saveEpidemic(HttpServletRequest request, HttpServletResponse response) {
+		
 		return "success";
 	}
 

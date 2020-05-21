@@ -86,12 +86,9 @@
 			<font color="red">*</font> <font id="healtycode"
 				style="color: darkgreen"><b>1.健康码</b></font>
 			<div style="margin-bottom: 10px">
-				<tr>
-					<td></td>
-					<td><input type="radio" name="healtycode">红码 <input
-						type="radio" name="healtycode">黄码 <input type="radio"
-						name="healtycode">绿码</td>
-				</tr>
+				<input type="radio" name="healthyCode" value="红码">红码<br>
+				<input type="radio" name="healthyCode" value="黄码">黄码 <br>
+				<input type="radio" name="healthyCode" value="绿码">绿码
 			</div>
 
 			<div style="margin-bottom: 10px">
@@ -107,95 +104,96 @@
 			<div style="margin-bottom: 10px">
 				<font color="red">*</font> <font id="tt" color="darkgreen"><b>3.当前所在地</b></font>
 				<div id="currAdd">
-					<tr>
-						<td>&nbsp;&nbsp;&nbsp;</td>
-						<td><select class="select" id="province_code"
-							name="province_code" οnchange="getCity()">
-								<option value="">请选择</option>
-						</select> <select class="select" id="city_code" name="city_code"
-							οnchange="getArea()">
-								<option value="">请选择</option>
-						</select> <select class="select" id="area_code" name="area_code">
-								<option value="">请选择</option>
-						</select></td>
-						<td><textarea rows="1" cols="" placeholder="请输入详细地址"></textarea></td>
-					</tr>
+					<select class="select" id="province_code" name="province_code"
+						οnchange="getCity()">
+						<option value="">请选择</option>
+					</select> <select class="select" id="city_code" name="city_code"
+						οnchange="getArea()">
+						<option value="">请选择</option>
+					</select> <select class="select" id="area_code" name="area_code">
+						<option value="">请选择</option>
+					</select>
+					<textarea rows="1" cols="" placeholder="请输入详细地址"></textarea>
 				</div>
 			</div>
-			<div style="margin-bottom: 10px">
-				<font color="red">*</font> <font id="tt" color="darkgreen"><b>4.填报当日是否在校</b></font>
-				<div>
-					<input type="radio" name="isInSch">是 <input type="radio"
-						name="isInSch">否
-				</div>
+		</div>
+		<div style="margin-bottom: 10px">
+			<font color="red">*</font> <font id="tt" color="darkgreen"><b>4.填报当日是否在校</b></font>
+			<div>
+				<input type="radio" name="isInSch" value="是">是 <input
+					type="radio" name="isInSch" value="否">否
 			</div>
-			<div style="margin-bottom: 30px">
-				<font color="red">*</font> <font color="darkgreen"
-					style="margin-bottom: 10px"><b>5.目前健康状况</b></font>
-				<div>
-					<input type="radio" name="healthyStu">健康 <br> <input
-						type="radio" name="healthyStu">感冒<br> <input
-						type="radio" name="healthyStu">咳嗽<br> <input
-						type="radio" name="healthyStu">乏力<br> <input
-						type="radio" name="healthyStu">呼吸困难<br> <input
-						type="radio" name="healthyStu">腹泻<br> 其他
-					<textarea rows="1" cols=""></textarea>
+		</div>
+		<div style="margin-bottom: 30px">
+			<font color="red">*</font> <font color="darkgreen"
+				style="margin-bottom: 10px"><b>5.目前健康状况</b></font>
+			<div>
+				<input type="radio" name="healthyStu" value="健康">健康 <br>
+				<input type="radio" name="healthyStu" value="感冒">感冒<br>
+				<input type="radio" name="healthyStu" value="咳嗽">咳嗽<br>
+				<input type="radio" name="healthyStu" value="乏力">乏力<br>
+				<input type="radio" name="healthyStu" value="呼吸困难">呼吸困难<br>
+				<input type="radio" name="healthyStu" value="腹泻">腹泻<br>
+				其他
+				<textarea rows="1" cols=""></textarea>
 
-				</div>
 			</div>
+		</div>
 
-			<div style="margin-bottom: 10px">
-				<font color="red">*</font> <font color="darkgreen"><b>6.是否咳嗽、发烧</b></font>
-				<div class="" id="isIll">
-					&nbsp;&nbsp;&nbsp;<input type="radio" name="isIll">咳嗽 <input
-						type="radio" name="isIll">发烧 <input type="radio"
-						name="isIll">咳嗽或发烧 &nbsp;&nbsp;&nbsp;&nbsp;其他症状：
-					<textarea rows="" cols=""></textarea>
-				</div>
+		<div style="margin-bottom: 10px">
+			<font color="red">*</font> <font color="darkgreen"><b>6.是否咳嗽、发烧</b></font>
+			&nbsp;&nbsp;&nbsp;
+			<div class="" id="isIll">
+				<input type="radio" name="isIll" value="咳嗽">咳嗽<br> <input
+					type="radio" name="isIll" value="发烧">发烧<br> <input
+					type="radio" name="isIll" value="咳嗽或发烧">咳嗽或发烧 <br>其他症状：
+				<textarea name="otherIll" rows="" cols=""></textarea>
 			</div>
+		</div>
 
-			<div style="margin-bottom: 10px">
-				<font color="red">* </font> <font color="darkgreen"> <b>7.是否新冠肺炎确诊病例</b>
-				</font>
-				<div>
-					&nbsp;&nbsp;&nbsp;<input type="radio" id="isNcov" name="isNcov">是
-					<input type="radio" id="isNcov" name="isNcov">否
-				</div>
+		<div style="margin-bottom: 10px">
+			<font color="red">* </font> <font color="darkgreen"> <b>7.是否新冠肺炎确诊病例</b>
+			</font>
+			<div>
+				&nbsp;&nbsp;&nbsp;<input type="radio" id="isNcov" name="isNcov"
+					value="是">是 <input type="radio" id="isNcov" name="isNcov"
+					value="否">否
 			</div>
+		</div>
 
-			<div style="margin-bottom: 10px">
-				<font color="red">* </font> <font color="darkgreen"> <b>8.是否感染新冠肺炎后已治愈
-				</b></font>
-				<div>
-					&nbsp;&nbsp;&nbsp;<input type="radio" id="isCure" name="isCure">是
-					<input type="radio" id="isCure" name="isCure">否
-				</div>
+		<div style="margin-bottom: 10px">
+			<font color="red">* </font> <font color="darkgreen"> <b>8.是否感染新冠肺炎后已治愈
+			</b></font> &nbsp;&nbsp;&nbsp;
+			<div>
+				<input type="radio" id="isCure" name="isCure" value="是">是<br>
+				<input type="radio" id="isCure" name="isCure" value="否">否
 			</div>
+		</div>
 
-			<div style="margin-bottom: 10px">
-				<font color="red">* </font> <font color="darkgreen"> <b>9.是否新冠肺炎疑似病例</b>
-				</font>
-				<div id="idcard">
-					&nbsp;&nbsp;&nbsp;<input type="radio" id="isAspect" name="isAspect">是
-					<input type="radio" name="isAspect">否
-				</div>
+		<div style="margin-bottom: 10px">
+			<font color="red">* </font> <font color="darkgreen"> <b>9.是否新冠肺炎疑似病例</b>
+			</font> &nbsp;&nbsp;&nbsp;
+			<div id="idcard">
+				<input type="radio" id="isAspect" name="isAspect" value="是">是<br>
+				<input type="radio" name="isAspect" value="否">否
 			</div>
-			<div style="margin-bottom: 10px">
-				<font color="darkgreen"><b>10.今日的公共交通出行情况</b></font>
-				<div id="idcard">
-					&nbsp;&nbsp;&nbsp;
-					<textarea name="todayTool" id="todayTriffTools" rows="" cols=""></textarea>
-				</div>
+		</div>
+		<div style="margin-bottom: 10px">
+			<font color="darkgreen"><b>10.今日的公共交通出行情况</b></font>
+			<div id="idcard">
+				&nbsp;&nbsp;&nbsp;
+				<textarea name="todayTool" id="todayTriffTools" rows="" cols=""></textarea>
 			</div>
-			<div style="margin-bottom: 10px">
-				<font color="darkgreen"><b>11.近14日的公共交通工具</b></font>
-				<div id="idcard">
-					&nbsp;&nbsp;&nbsp;
-					<textarea rows="" cols="" name="twoWeeksTriffTool"
-						id="twoWeeksTriffTool"></textarea>
-				</div>
+		</div>
+		<div style="margin-bottom: 10px">
+			<font color="darkgreen"><b>11.近14日的公共交通工具</b></font>
+			<div id="idcard">
+				&nbsp;&nbsp;&nbsp;
+				<textarea rows="" cols="" name="twoWeeksTriffTool"
+					id="twoWeeksTriffTool"></textarea>
 			</div>
-			<input type="submit" value="提交" style="color: darkgreen; size: 5">
+		</div>
+		<input type="submit" value="提交" style="color: darkgreen; size: 5">
 	</form>
 
 
@@ -211,9 +209,6 @@
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/dcalendar.picker.js"></script>
 
-
-
-	<!-- Slick Carousel -->
 
 	<script type="text/javascript">
 		/*加载省下拉选*/

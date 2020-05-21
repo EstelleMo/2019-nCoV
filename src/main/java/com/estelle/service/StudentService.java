@@ -24,4 +24,6 @@ public interface StudentService{
 	List<Student> findByName(String name);
 
 	PageBean findStudentList();
+
+	int saveDaily(StudentHealthy studentHealthy);
 }
