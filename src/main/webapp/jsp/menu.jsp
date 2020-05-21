@@ -159,7 +159,7 @@ A.active {
 											<TBODY>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/ncov"
+														href="${pageContext.request.contextPath }/epidemic"
 														target=main>－ 疫情情报</A></TD>
 												</TR>
 												<TR>

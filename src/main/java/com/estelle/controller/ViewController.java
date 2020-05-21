@@ -116,10 +116,10 @@ public class ViewController {
 		return "top";
 	}
 
-	@RequestMapping("/ncov")
-	public String ncov() {
+	@RequestMapping("/epidemic")
+	public String epidemic() {
 
-		return "ncov";
+		return "epidemic";
 	}
 
 	@RequestMapping("/ncovinfo")

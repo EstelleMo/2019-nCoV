@@ -175,8 +175,17 @@ public class UserController {
 		return "success";
 	}
 	@RequestMapping("/saveEpidemic")
-	public String saveEpidemic(HttpServletRequest request, HttpServletResponse response) {
-		
+	public String saveEpidemic(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "healthyStu", required = false) String healthyStu,
+			@RequestParam(value = "isHb", required = false) String isHb,
+			@RequestParam(value = "isclose", required = false) String isclose,
+			@RequestParam(value = "isTouch", required = false) String isTouch,
+			@RequestParam(value = "healthyOfFam", required = false) String healthyOfFam,
+			@RequestParam(value = "isIll", required = false) String isIll,
+			@RequestParam(value = "isNcov", required = false) String isNcov,
+			@RequestParam(value = "isCure", required = false) String isCure
+			) {
+		System.out.println("保存疫情防控信息");
 		return "success";
 	}
 
