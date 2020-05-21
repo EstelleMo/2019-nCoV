@@ -30,9 +30,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.estelle.bean.Family;
 import com.estelle.bean.Manager;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
+import com.estelle.service.FamilyService;
 import com.estelle.service.ManagerService;
 import com.estelle.service.StudentService;
 import com.estelle.util.PwdUtil;
@@ -45,6 +47,8 @@ public class UserController {
 	private StudentService stuService;
 	@Autowired
 	private ManagerService manService;
+	@Autowired
+	private FamilyService familyService;
 
 	@RequestMapping("/login")
 	public @ResponseBody ModelAndView studentLogin(HttpServletRequest request, HttpServletResponse response,
@@ -58,7 +62,7 @@ public class UserController {
 			if (student != null) {
 				session.setAttribute("student", student);
 				String sname = student.getName();
-				mav.setViewName("index"); 
+				mav.setViewName("index");
 				return mav;
 			} else { // 若学生表中找不到该用户则到managaer表中查找
 				Manager manager = manService.login(no, password);
@@ -81,7 +85,6 @@ public class UserController {
 			@Param(value = "subDate") Date subDate) {
 
 		System.out.println(subDate);
-		
 
 		return "success";
 	}
@@ -93,13 +96,9 @@ public class UserController {
 	}
 
 	@RequestMapping("/saveNormal")
-	public @ResponseBody() String saveNormal(HttpServletRequest request
-			,HttpServletResponse response
-			,@Param(value = "nativePlace")String nativePlace
-			,@Param(value = "homeDetAdd")String homeDetAdd
-			,@Param(value = "tel")String tel
-			,@Param(value = "idcard")String idcard
-			) {
+	public @ResponseBody() String saveNormal(HttpServletRequest request, HttpServletResponse response,
+			@Param(value = "nativePlace") String nativePlace, @Param(value = "homeDetAdd") String homeDetAdd,
+			@Param(value = "tel") String tel, @Param(value = "idcard") String idcard) {
 		HttpSession session = request.getSession();
 		Student s = (Student) session.getAttribute("student");
 		Student student = new Student();
@@ -107,19 +106,38 @@ public class UserController {
 		student.setIdcard(idcard);
 		student.setTel(tel);
 		int i = stuService.saveMsg(student);
-		
-		
+
 		return "success";
 	}
 
 	@RequestMapping("/saveDaily")
-	public String saveDaily() {
+	public String saveDaily(HttpServletRequest request, HttpServletResponse response) {
 
 		return "success";
 	}
+
+	@RequestMapping("/addFamily")
+	public String addFamily(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "gender", required = false) String gender,
+			@RequestParam(value = "relationship", required = false) String relationship) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		Family family = new Family();
+		family.setSname(student.getName());
+		family.setSno(student.getNo());
+		family.setGender(gender);
+		family.setName(name);
+		family.setRelationship(relationship);
+
+		int i = familyService.saveFamily(family);
+		System.out.println("成功添加family");
+		return "success";
+	}
+
 	@RequestMapping("/saveFamDaily")
-	public String saveFamDaily() {
-		
+	public String saveFamDaily(HttpServletRequest request, HttpServletResponse response) {
+
 		return "success";
 	}
 

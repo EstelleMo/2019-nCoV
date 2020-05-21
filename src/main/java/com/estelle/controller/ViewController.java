@@ -172,7 +172,7 @@ public class ViewController {
 	@RequestMapping("/addFamily")
 	public String family() {
 		
-		return "family";
+		return "addFamily";
 	}
 
 	@RequestMapping("/showFamily")
