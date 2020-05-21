@@ -12,7 +12,8 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
 <!-- Google web font "Open Sans" -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/calendar.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/calendar.css">
 
 <link rel="stylesheet" href="./css/fontawesome-all.min.css">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
@@ -26,7 +27,7 @@
 
 	<font style="color: #003366" size="10"><b>基本信息</b></font>
 	<hr color="lightgrey" />
-	
+
 	<form action="${pageContext.request.contextPath }/user/saveNormal">
 		<div id="preload-01" style="color: black">
 			<font style="color: darkgreen">1.您的姓名</font>
@@ -46,22 +47,22 @@
 				<font color="darkgreen">3.班级</font>
 				<div>
 					&nbsp;&nbsp;&nbsp;<input type="text" value="${student.classNo }"
-					id="classNo"	readonly="readonly">
+						id="classNo" readonly="readonly">
 				</div>
 
 			</div>
 			<div style="margin-bottom: 10px">
 				<font color="darkgreen">4.学号</font>
 				<div>
-					&nbsp;&nbsp;&nbsp;<input type="text" value="${student.no }"
-					 id="no"	readonly="readonly">
+					&nbsp;&nbsp;&nbsp;<input type="text" value="${student.no }" id="no"
+						readonly="readonly">
 				</div>
 			</div>
 			<div style="margin-bottom: 10px">
 				<font color="darkgreen">5.学院</font>
 				<div>
 					&nbsp;&nbsp;&nbsp;<input type="text" readonly="readonly"
-					id="college"	value="${student.college }">
+						id="college" value="${student.college }">
 				</div>
 			</div>
 
@@ -69,59 +70,68 @@
 			<div style="margin-bottom: 10px">
 				<font color="red">*</font> <font color="darkgreen">6.户籍</font>
 				<div id="nativePlace">
-					<tr>
-						<td>&nbsp;&nbsp;&nbsp;</td>
-						<td><select class="select" id="province_code"
-							name="province_code" οnchange="getCity()">
-								<option value="">请选择</option>
-						</select> <select class="select" id="city_code" name="city_code"
-							οnchange="getArea()">
-								<option value="">请选择</option>
-						</select> <select class="select" id="area_code" name="area_code">
-								<option value="">请选择</option>
-						</select></td>
-					</tr>
+					<select class="select" id="province_code1" name="province_code1"
+						οnchange="getCity()">
+						<option value="">请选择</option>
+					</select> <select class="select" id="city_code1" name="city_code1"
+						οnchange="getArea()">
+						<option value="">请选择</option>
+					</select> <select class="select" id="area_code1" name="area_code1">
+						<option value="">请选择</option>
+					</select>
 				</div>
 			</div>
 
 			<div style="margin-bottom: 10px">
 				<font color="red">*</font> <font color="darkgreen">7.家庭住址</font>
 				<div class="" id="homeDetAdd">
-					<tr>
-						<td>&nbsp;&nbsp;&nbsp;</td>
-						<td><select class="select" id="province_code"
-							name="province_code" οnchange="getCity()">
-								<option value="">请选择</option>
-						</select> <select class="select" id="city_code" name="city_code"
-							οnchange="getArea()">
-								<option value="">请选择</option>
-						</select> <select class="select" id="area_code" name="area_code">
-								<option value="">请选择</option>
-						</select></td>
-
-					</tr>
-					<input type="text" placeholder="请输入详细地址">
+					<select class="select" id="province_code2" name="province_code2"
+						οnchange="getCity()">
+						<option value="">请选择</option>
+					</select> <select class="select" id="city_code2" name="city_code2"
+						οnchange="getArea()">
+						<option value="">请选择</option>
+					</select> <select class="select" id="area_code2" name="area_code2">
+						<option value="">请选择</option>
+					</select> <input type="text" placeholder="请输入详细地址">
 				</div>
 			</div>
 
 			<div style="margin-bottom: 10px">
 				<font color="red">* </font> <font color="darkgreen"> 8.联系电话 </font>
-				<div>
-					&nbsp;&nbsp;&nbsp;<input type="text" id="tel"
-						placeholder="请输入您的联系方式">
-				</div>
+				<c:if test="${empty student.tel }">
+					<div>
+						&nbsp;&nbsp;&nbsp;<input type="text" id="tel"
+							placeholder="请输入您的联系方式">
+					</div>
+				</c:if>
+				<c:if test="${!empty student.tel }">
+					<div>
+						&nbsp;&nbsp;&nbsp;<input type="text" id="tel"
+							value="${student.tel }">
+					</div>
+				</c:if>
 			</div>
 
 
 			<div style="margin-bottom: 10px">
 				<font color="red">* </font> <font color="darkgreen"> 9.身份证 </font>
-				<div id="idcard">
-					&nbsp;&nbsp;&nbsp;<input type="text" id="idcard"
-						placeholder="请输入您的身份证">
-				</div>
+				<c:if test="${empty student.idcard }">
+					<div id="idcard">
+						&nbsp;&nbsp;&nbsp;<input type="text" id="idcard"
+							placeholder="请输入您的身份证">
+					</div>
+				</c:if>
+				<c:if test="${!empty student.idcard }">
+					<div id="idcard">
+						&nbsp;&nbsp;&nbsp;<input type="text" id="idcard"
+							value="${student.idcard }">
+					</div>
+				</c:if>
+
 			</div>
 		</div>
-		
+
 		<input type="submit" style="color: darkgreen" value="提交">
 	</form>
 
@@ -130,70 +140,88 @@
 	<div id="preload-03"></div>
 	<div id="preload-04"></div>
 
-	<script rel="stylesheet" src="${pageContext.request.contextPath }/js/jquery.min2"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.min"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/slick/slick.min.js"></script>
+	<script rel="stylesheet"
+		src="${pageContext.request.contextPath }/js/jquery.min2"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/js/jquery.min"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath }/slick/slick.min.js"></script>
 
 	<script type="text/javascript">
-    /*加载省下拉选*/
-    alert(1);
-    $(function () {
-    	alert(2)
-    	
-        $.ajax({
-            type: "post",
-            url: "${pageContext.request.contextPath}/area/getProvince",
-            success: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    $('#province_code').append("<option value='" + data[i].id + "' >" + data[i].aName + "</option>");
-                }
-            },
-            error: function () {
-                alert("加载省失败");
-            }
-        });
-    });
-    /*加载市下拉选*/
-    function getCity() {
-        var id = $("#province_code").val();
-        $("#city_code").empty();
-        $("#area_code").empty();
-        $.ajax({
-            type: "post",
-            url: "${pageContext.request.contextPath}/area/getCity",
-            data: {"id": id},
-            success: function (data) {
-                $('#city_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
-                $('#area_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
-                for (var i = 0; i < data.length; i++) {
-                    $('#city_code').append("<option value='" + data[i].id + "' >" + data[i].aName + "</option>");
-                }
-            },
-            error: function () {
-                alert("加载市失败");
-            }
-        });
-    }
-    ;
-    /*加载地区下拉选*/
-    function getArea() {
-        var id = $("#city_code").val();
-        $("#area_code").empty();
-        $.ajax({
-            type: "post",
-            url: "${pageContext.request.contextPath}/area/getArea",
-            data: {"id": id},
-            success: function (data) {
-                $('#area_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
-                for (var i = 0; i < data.length; i++) {
-                    $('#area_code').append("<option value='" + data[i].id + "' >" + data[i].aName + "</option>");
-                }
-            },
-            error: function () {
-                alert("加载区失败");
-            }
-        });
-    }
+		alert(${pageContext.request.contextPath });
+		/*加载省下拉选*/
+		province_code1.onchange = $(function() {
+			alert(123);
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/area/getProvince",
+				success : function(data) {
+					alert("成功進入ajax 查找省份")
+					for (var i = 0; i < data.length; i++) {
+						$('#province_code1').append(
+								"<option value='" + data[i].id + "' >"
+										+ data[i].aName + "</option>");
+					}
+				},
+				error : function() {
+					alert("加载省失败");
+				}
+			});
+		});
+		/*加载市下拉选*/
+		function getCity() {
+			var id = $("#province_code1").val();
+			$("#city_code1").empty();
+			$("#area_code1").empty();
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/area/getCity",
+				data : {
+					"id" : id
+				},
+				success : function(data) {
+					$('#city_code1').append(
+							"<option value='' selected='selected' >" + '请选择'
+									+ "</option>");
+					$('#area_code1').append(
+							"<option value='' selected='selected' >" + '请选择'
+									+ "</option>");
+					for (var i = 0; i < data.length; i++) {
+						$('#city_code1').append(
+								"<option value='" + data[i].id + "' >"
+										+ data[i].aName + "</option>");
+					}
+				},
+				error : function() {
+					alert("加载市失败");
+				}
+			});
+		};
+		/*加载地区下拉选*/
+		function getArea() {
+			var id = $("#city_code1").val();
+			$("#area_code1").empty();
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/area/getArea",
+				data : {
+					"id" : id
+				},
+				success : function(data) {
+					$('#area_code1').append(
+							"<option value='' selected='selected' >" + '请选择'
+									+ "</option>");
+					for (var i = 0; i < data.length; i++) {
+						$('#area_code1').append(
+								"<option value='" + data[i].id + "' >"
+										+ data[i].aName + "</option>");
+					}
+				},
+				error : function() {
+					alert("加载区失败");
+				}
+			});
+		}
 	</script>
 </body>
 </html>
