@@ -36,4 +36,5 @@ public interface StudentMapper {
 
 	List<Student> selectByNameNCollege(@Param(value = "name")String name,  @Param(value = "college")String college);
 
+
 }

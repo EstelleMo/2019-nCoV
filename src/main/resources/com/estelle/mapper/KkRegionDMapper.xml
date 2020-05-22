@@ -217,12 +217,17 @@
 	<select id="selectById" resultMap="BaseResultMap"
 		parameterType="com.estelle.bean.KkRegionDExample">
 		select
-		<if test="distinct">
-			distinct
-		</if>
 		<include refid="Base_Column_List" />
 		from kk_region_d
 		where fid = #{id}
+	</select>
+	
+	<select id="selectByCode" resultMap="BaseResultMap"
+		parameterType="String">
+		select
+		<include refid="Base_Column_List" />
+		from kk_region_d
+		where id = #{id}
 	</select>
 
 

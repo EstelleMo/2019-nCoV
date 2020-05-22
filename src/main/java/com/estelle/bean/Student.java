@@ -150,4 +150,10 @@ public class Student {
     public void setApplyStatus(String applyStatus) {
         this.applyStatus = applyStatus == null ? null : applyStatus.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Student [no=" + no + ", name=" + name + ", tel=" + tel + ", idcard=" + idcard + "]";
+	}
+    
 }

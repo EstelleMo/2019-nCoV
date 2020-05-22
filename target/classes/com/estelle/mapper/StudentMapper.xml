@@ -249,6 +249,7 @@
 			<include refid="Example_Where_Clause" />
 		</if>
 	</select>
+	
 	<update id="updateByExampleSelective" parameterType="map">
 		update student
 		<set>
@@ -422,4 +423,5 @@
 		where name = #{name}
 		and college = #{college}
 	</select>
+	
 </mapper>

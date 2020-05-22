@@ -37,6 +37,7 @@ import com.estelle.bean.Epidemic;
 import com.estelle.bean.FamHealthy;
 import com.estelle.bean.Family;
 import com.estelle.bean.Fever;
+import com.estelle.bean.KkRegionD;
 import com.estelle.bean.Manager;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
@@ -44,6 +45,7 @@ import com.estelle.service.EpidemicService;
 import com.estelle.service.FamilyService;
 import com.estelle.service.FeverService;
 import com.estelle.service.ManagerService;
+import com.estelle.service.RegionService;
 import com.estelle.service.StudentService;
 import com.estelle.util.PwdUtil;
 
@@ -61,6 +63,8 @@ public class UserController {
 	private FeverService feverService;
 	@Autowired
 	private EpidemicService epidemicService;
+	@Autowired
+	private RegionService regionService;
 
 	@RequestMapping("/login")
 	public @ResponseBody ModelAndView studentLogin(HttpServletRequest request, HttpServletResponse response,
@@ -102,17 +106,34 @@ public class UserController {
 
 	@RequestMapping("/saveNormal")
 	public @ResponseBody() String saveNormal(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "homeDetAdd", required = false) String homeDetAdd,
 			@RequestParam(value = "tel", required = false) String tel,
 			@RequestParam(value = "idcard", required = false) String idcard) {
 		HttpSession session = request.getSession();
-		Student s = (Student) session.getAttribute("student");
-		Student student = new Student();
-		student.setHomeDetAdd(homeDetAdd);
+		Student student = (Student) session.getAttribute("student");
 		student.setIdcard(idcard);
 		student.setTel(tel);
+		System.out.println("idcard : "+idcard);
+		System.out.println("tel : "+tel);
+		String province_code1 = request.getAttribute("province_code1").toString();
+		String city_code1 = request.getAttribute("city_code1").toString();
+		String area_code1 = request.getAttribute("area_code1").toString();
+		String province_code2 = request.getAttribute("province_code2").toString();
+		String city_code2 = request.getAttribute("city_code2").toString();
+		String area_code2 = request.getAttribute("area_code2").toString();
+		
+		KkRegionD nativeProvince = regionService.findRegion(province_code1);
+		KkRegionD nativeCity = regionService.findRegion(city_code1);
+		KkRegionD nativeArea = regionService.findRegion(area_code1);
+		KkRegionD homeProvince = regionService.findRegion(province_code2);
+		KkRegionD homeCity = regionService.findRegion(city_code2);
+		KkRegionD homeArea = regionService.findRegion(area_code2);
+		
+		
+		System.out.println("-----------");
+		
+		System.out.println(student);
 		int i = stuService.saveMsg(student);
-
+		
 		return "success";
 	}
 
@@ -202,7 +223,8 @@ public class UserController {
 			@RequestParam(value = "isLeave", required = false) String isLeave,
 			@RequestParam(value = "isCure", required = false) String isCure) {
 		System.out.println("保存疫情防控信息");
-		Student s = (Student) request.getAttribute("student");
+		HttpSession session = request.getSession();
+		Student s = (Student) session.getAttribute("student");
 		Epidemic epidemic = new Epidemic();
 		epidemic.setName(s.getName());
 		epidemic.setNo(s.getNo());

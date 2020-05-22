@@ -70,7 +70,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public int saveMsg(Student student) {
-		int i = sMapper.insertSelective(student);
+		int i = sMapper.updateByPrimaryKeySelective(student);
 		return i;
 	}
 

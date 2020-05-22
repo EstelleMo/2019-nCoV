@@ -15,12 +15,18 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/calendar.css">
 
-<link rel="stylesheet" href="./css/fontawesome-all.min.css">
-<link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="./css/magnific-popup.css" />
-<link rel="stylesheet" type="text/css" href="./slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css" />
-<link rel="stylesheet" href="./css/menu.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/fontawesome-all.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/magnific-popup.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/slick/slick.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/slick/slick-theme.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/menu.css">
 
 </head>
 <body>
@@ -66,7 +72,6 @@
 				</div>
 			</div>
 
-
 			<div style="margin-bottom: 10px">
 				<font color="red">*</font> <font color="darkgreen">6.户籍</font>
 				<div id="nativePlace">
@@ -101,13 +106,13 @@
 				<font color="red">* </font> <font color="darkgreen"> 8.联系电话 </font>
 				<c:if test="${empty student.tel }">
 					<div>
-						&nbsp;&nbsp;&nbsp;<input type="text" id="tel"
+						&nbsp;&nbsp;&nbsp;<input type="text" id="tel" name="tel"
 							placeholder="请输入您的联系方式">
 					</div>
 				</c:if>
 				<c:if test="${!empty student.tel }">
 					<div>
-						&nbsp;&nbsp;&nbsp;<input type="text" id="tel"
+						&nbsp;&nbsp;&nbsp;<input type="text" id="tel" name="tel"
 							value="${student.tel }">
 					</div>
 				</c:if>
@@ -118,13 +123,13 @@
 				<font color="red">* </font> <font color="darkgreen"> 9.身份证 </font>
 				<c:if test="${empty student.idcard }">
 					<div id="idcard">
-						&nbsp;&nbsp;&nbsp;<input type="text" id="idcard"
+						&nbsp;&nbsp;&nbsp;<input type="text" id="idcard" name="idcard"
 							placeholder="请输入您的身份证">
 					</div>
 				</c:if>
 				<c:if test="${!empty student.idcard }">
 					<div id="idcard">
-						&nbsp;&nbsp;&nbsp;<input type="text" id="idcard"
+						&nbsp;&nbsp;&nbsp;<input type="text" id="idcard" name="idcard"
 							value="${student.idcard }">
 					</div>
 				</c:if>
@@ -135,32 +140,28 @@
 		<input type="submit" style="color: darkgreen" value="提交">
 	</form>
 
-
-	<div id="preload-02"></div>
-	<div id="preload-03"></div>
-	<div id="preload-04"></div>
-
 	<script rel="stylesheet"
-		src="${pageContext.request.contextPath }/js/jquery.min2"></script>
+		src="${pageContext.request.contextPath }/js/jquery.min2.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/js/jquery.min"></script>
+		src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/slick/slick.min.js"></script>
 
 	<script type="text/javascript">
-		alert(${pageContext.request.contextPath });
 		/*加载省下拉选*/
-		province_code1.onchange = $(function() {
-			alert(123);
+		$(function() {
+			console.log("加载省1");
 			$.ajax({
 				type : "post",
 				url : "${pageContext.request.contextPath}/area/getProvince",
 				success : function(data) {
-					alert("成功進入ajax 查找省份")
 					for (var i = 0; i < data.length; i++) {
 						$('#province_code1').append(
 								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+										+ data[i].regionName + "</option>");
+						$('#province_code2').append(
+								"<option value='" + data[i].id + "' >"
+										+ data[i].regionName + "</option>");
 					}
 				},
 				error : function() {
@@ -169,7 +170,8 @@
 			});
 		});
 		/*加载市下拉选*/
-		function getCity() {
+		province_code1.onchange = function getCity() {
+			console.log("加载市")
 			var id = $("#province_code1").val();
 			$("#city_code1").empty();
 			$("#area_code1").empty();
@@ -189,7 +191,36 @@
 					for (var i = 0; i < data.length; i++) {
 						$('#city_code1').append(
 								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+										+ data[i].regionName + "</option>");
+					}
+				},
+				error : function() {
+					alert("加载市失败");
+				}
+			});
+		};
+		province_code2.onchange = function getCity() {
+			console.log("加载市")
+			var id = $("#province_code2").val();
+			$("#city_code2").empty();
+			$("#area_code2").empty();
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/area/getCity",
+				data : {
+					"id" : id
+				},
+				success : function(data) {
+					$('#city_code2').append(
+							"<option value='' selected='selected' >" + '请选择'
+									+ "</option>");
+					$('#area_code2').append(
+							"<option value='' selected='selected' >" + '请选择'
+									+ "</option>");
+					for (var i = 0; i < data.length; i++) {
+						$('#city_code2').append(
+								"<option value='" + data[i].id + "' >"
+										+ data[i].regionName + "</option>");
 					}
 				},
 				error : function() {
@@ -198,7 +229,8 @@
 			});
 		};
 		/*加载地区下拉选*/
-		function getArea() {
+		city_code1.onchange = function getArea() {
+			console.log("加载地区")
 			var id = $("#city_code1").val();
 			$("#area_code1").empty();
 			$.ajax({
@@ -214,13 +246,40 @@
 					for (var i = 0; i < data.length; i++) {
 						$('#area_code1').append(
 								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+										+ data[i].regionName + "</option>");
 					}
 				},
 				error : function() {
 					alert("加载区失败");
 				}
 			});
+			city_code2.onchange = function getArea() {
+				console.log("加载地区")
+				var id = $("#city_code2").val();
+				$("#area_code2").empty();
+				$
+						.ajax({
+							type : "post",
+							url : "${pageContext.request.contextPath}/area/getArea",
+							data : {
+								"id" : id
+							},
+							success : function(data) {
+								$('#area_code2').append(
+										"<option value='' selected='selected' >"
+												+ '请选择' + "</option>");
+								for (var i = 0; i < data.length; i++) {
+									$('#area_code2').append(
+											"<option value='" + data[i].id + "' >"
+													+ data[i].regionName
+													+ "</option>");
+								}
+							},
+							error : function() {
+								alert("加载区失败");
+							}
+						});
+			}
 		}
 	</script>
 </body>
