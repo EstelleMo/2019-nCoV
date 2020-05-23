@@ -26,4 +26,6 @@ public interface StudentService{
 	PageBean findStudentList();
 
 	int saveDaily(StudentHealthy studentHealthy);
+
+	StudentHealthy findMyDailyHistory(String subDate);
 }

@@ -6,12 +6,16 @@
 <head>
 <TITLE>客户列表</TITLE>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<LINK href="${pageContext.request.contextPath }/css/Style.css"
+<LINK href="${pageContext.request.contextPath }/css/style.css"
 	type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css"
 	type=text/css rel=stylesheet>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="./js/jquery.backstretch.min.js"></script>
+<script type="text/javascript" src="./slick/slick.min.js"></script>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+
 <SCRIPT language=javascript>
 	function to_page(page) {
 		if (page) {
@@ -26,8 +30,7 @@
 </HEAD>
 <BODY>
 
-	<font color="darkblue" size="5">
-	<b>健康打卡记录</b>
+	<font style="color: white; size: 10"> <b>健康打卡记录</b>
 	</font>
 
 
@@ -84,45 +87,21 @@
 											<TBODY>
 												<TR
 													style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
+													<TD>所属学院</TD>
+													<TD>学生姓名</TD>
 													<TD>填报日期</TD>
-													<TD>填报状态</TD>
 													<TD>操作</TD>
-													<!-- <TD>所属行业</TD>
-													<TD>电话</TD>
-													<TD>手机</TD>
-													<TD>操作</TD> -->
 												</TR>
-												<c:forEach items="${list }" var="list">
+												<c:forEach items="${dailyList }" var="item">
 													<TR
 														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-														<TD>${list.subDate }</TD>
-														<TD>${list.msgState }</TD>
+														<TD>${item.college }</TD>
+														<TD>${item.name }</TD>
+														<TD id="tdd">${item.subDate }</TD>
 														<TD><a
 															href="${pageContext.request.contextPath }/user/updateList ">修改</a>
-															/ <a href="${pageContext.request.contextPath }/checkList">
-																查看 </a></TD>
-													</TR>
-
-
-
-												</c:forEach>
-
-
-
-												<c:forEach items="${pageBean.list }" var="student">
-													<TR
-														style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-														<TD>${student.name }</TD>
-														<TD>${customer.cust_level.dict_item_name }</TD>
-														<TD>${customer.cust_source.dict_item_name }</TD>
-														<TD>${customer.cust_industry.dict_item_name }</TD>
-														<TD>${customer.cust_phone }</TD>
-														<TD>${customer.cust_mobile }</TD>
-														<TD><a
-															href="${pageContext.request.contextPath }/user/updateList">修改</a>
-															<%-- &nbsp;&nbsp; <a
-															href="${pageContext.request.contextPath }/customerServlet?method=delete&cust_id=${customer.cust_id}">删除</a> --%>
-														</TD>
+															/ <a id="checkDetail" onclick="checkDetail(this)"> 查看
+														</a></TD>
 													</TR>
 
 												</c:forEach>
@@ -133,21 +112,7 @@
 								</TR>
 
 								<TR>
-									<TD><SPAN id=pagelink> <%-- <DIV
-												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B>${pageBean.totalCount}</B>]条记录,[<B>${pageBean.totalPage}</B>]页
-												,每页显示 <select name="pageSize">
-
-													<option value="3">3</option>
-													<option value="5">5</option>
-												</select> 条 [<A href="javascript:to_page(${PageBean.currentPage-1})">前一页</A>]
-												<B>${pageBean.currentPage}</B> [<A
-													href="javascript:to_page(${PageBean.currentPage+1})">后一页</A>]
-												到 <input type="text" size="3" id="page" name="page"
-													value="${pageBean.currentPage }" /> 页 <input type="button"
-													value="Go" onclick="to_page()" />
-											</DIV> --%>
-									</SPAN></TD>
+									<TD><SPAN id=pagelink> </SPAN></TD>
 								</TR>
 							</TBODY>
 						</TABLE>
@@ -169,4 +134,26 @@
 		</TABLE>
 	</FORM>
 </BODY>
+<script type="text/javascript">
+	checkDetail.onclick = function checkDetail(val) {
+
+		var subDate = document.getElementById('tdd').innerHTML;
+		console.log(subDate);
+		$
+				.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath }/checkList",
+					data : {
+						subDate : subDate
+					},
+					success : function(data) {
+						alert("跳转成功")
+						window.location.href = "http://localhost:8080/2019-nCoV/dailyHistory";
+					}
+
+				});
+	}
+</script>
+
+
 </HTML>

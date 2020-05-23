@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.estelle.bean.FamHealthy;
@@ -134,6 +135,13 @@ public class ViewController {
 		return "ncovList";
 	}
 
+	@RequestMapping("/dailyHistory")
+	public String dailyHistory(
+			HttpServletRequest request,
+			HttpServletResponse response
+			) {
+		return "dailyHistory";
+	}
 	@RequestMapping("/feverSub")
 	public String feverSub() {
 
@@ -160,7 +168,6 @@ public class ViewController {
 
 	@RequestMapping("/daily")
 	public String daily(HttpServletRequest request) {
-		System.out.println("daily");
 		HttpSession session = request.getSession();
 		Student student = (Student) session.getAttribute("student");
 		String sno = student.getNo();
@@ -211,16 +218,19 @@ public class ViewController {
 		List<StudentHealthy> dailyList = sServiceImpl.findHistory();
 		session.setAttribute("dailyList", dailyList);
 
-		return "list";
+		return "dailyList";
 	}
 
 	// 查看学生打卡详情的页面
-	@RequestMapping("/studentSub")
-	public String studentSub(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/checkList")
+	@ResponseBody
+	public StudentHealthy studentSub(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		PageBean pageBean = sServiceImpl.findStudentList();
-		session.setAttribute("pageBean", pageBean);
-		return "checklist";
+		String subDate = request.getParameter("subDate");
+		System.out.println("checkList" + " " +subDate);
+		StudentHealthy sh = sServiceImpl.findMyDailyHistory(subDate);
+		session.setAttribute("sh", sh);
+		return sh;
 	}
 
 	// 修改密码跳转的页面

@@ -134,4 +134,12 @@ public class StudentServiceImpl implements StudentService {
 		return shMapper.insertSelective(studentHealthy);
 	}
 
+	@Override
+	public StudentHealthy findMyDailyHistory(String subDate) {
+		List<StudentHealthy> list = shMapper.selectBySubDate(subDate);
+		StudentHealthy studentHealthy = list.get(0);
+		System.out.println(studentHealthy);
+		return studentHealthy;
+	}
+
 }
