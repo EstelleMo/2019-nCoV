@@ -72,7 +72,7 @@
 			<c:forEach items="${fpageBean.list }" var="family">
 				<form style="float: left;"
 					action="${pageContext.request.contextPath }/showFamily">
-					<input type="submit" width="100" value="${family.name }" border="0"
+					<input type="submit" width="100" name="familyName" id="familyName" value="${family.name }" border="0" 
 						style="background: url('./images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
 				</form>
 			</c:forEach>
@@ -289,6 +289,23 @@
 				} */
 			});
 		}
+	</script>
+	
+	<script type="text/javascript">
+	familyName.onclick = function showFamily(){
+		var familyName = document.getElementById('familyName').innerHTML
+		var studentNo = document.getElementById('studentNo').innerHTML
+		console.log("name");
+		$.ajax({
+				type : "get",
+				url : "${pageContext.request.contextPath}/showFamily",
+				data : {
+					"familyName" : familyName
+				},
+				success : function(data) {
+					console.log("成功进入showFamily")
+				}
+	};
 	</script>
 </body>
 </html>

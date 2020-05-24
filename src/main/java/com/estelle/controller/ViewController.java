@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.estelle.bean.AppBackSch;
 import com.estelle.bean.Epidemic;
 import com.estelle.bean.FamHealthy;
+import com.estelle.bean.Family;
 import com.estelle.bean.Fever;
+import com.estelle.bean.Manager;
 import com.estelle.bean.PageBean;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
@@ -195,9 +198,12 @@ public class ViewController {
 	public String familyList(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		Student student = (Student) session.getAttribute("student");
+		String familyName = request.getParameter("familyName");
 		String sno = student.getNo();
-		PageBean fpageBean = fServiceImpl.findAllFamily(sno);
-		session.setAttribute("fpageBean", fpageBean);
+		System.out.println(sno);
+		Family family = fServiceImpl.findFamily(sno,familyName);
+		session.setAttribute("familyPersonal", family);
+		System.out.println(family);
 		return "familyDaily";
 	}
 
@@ -226,8 +232,14 @@ public class ViewController {
 		return "backSchool";
 	}
 	@RequestMapping("/back")
-	public String backResult() {
-		
+	public String backResult(
+			HttpServletRequest request, HttpServletResponse respons
+			) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		String subDate = request.getParameter("subDate");
+		List<AppBackSch> appList = sServiceImpl.findAppList(student.getNo(),subDate);
+		session.setAttribute("appList", appList);
 		return "backResult";
 	}
 
@@ -237,6 +249,31 @@ public class ViewController {
 		return "outNIn";
 	}
 
+	// 查看
+	@RequestMapping("/familyList")
+	public String familyList(HttpServletRequest request, HttpServletResponse respons,
+			@Param(value = "subDate") Date subDate) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		System.out.println("familyList  "+subDate);
+		List<FamHealthy> famHealthyList = fServiceImpl.findAllList(student.getNo());
+		session.setAttribute("famHealthyList", famHealthyList);
+		
+		return "familyList";
+	}
+	@RequestMapping("/checkFamHealthyList")
+	@ResponseBody
+	public FamHealthy checkFamHealthyList(HttpServletRequest request, HttpServletResponse respons
+			) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		String subDate = request.getParameter("subDate");
+		System.out.println("familyList  "+subDate);
+		FamHealthy fam = fServiceImpl.findFamDailyHistory(subDate);
+		session.setAttribute("fam", fam);
+		
+		return fam;
+	}
 	// 查看
 	@RequestMapping("/dailyList")
 	public String dailyList(HttpServletRequest request, HttpServletResponse respons,
@@ -251,11 +288,10 @@ public class ViewController {
 	// 查看学生打卡详情的页面
 	@RequestMapping("/checkList")
 	@ResponseBody
-	public StudentHealthy studentSub(HttpServletRequest request, HttpServletResponse response) {
+	public StudentHealthy checkList(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String subDate = request.getParameter("subDate");
 		StudentHealthy sh = sServiceImpl.findMyDailyHistory(subDate);
-		session.setAttribute("sh", sh);
 		return sh;
 	}
 	// 查看
@@ -297,6 +333,48 @@ public class ViewController {
 	public String updateStudent() {
 
 		return "student";
+	}
+	@RequestMapping("/checkStudentDaily")
+	public String checkStudentDaily(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		Manager manager = (Manager) session.getAttribute("manager");
+		PageBean pb = sServiceImpl.managerCheckDaily(manager);
+		
+		List studentDaily = pb.getList();
+		session.setAttribute("studentDaily", studentDaily);
+		session.setAttribute("studentDailypb", pb);
+		
+		PageBean pageBean = new PageBean();
+		
+		return "studentDaily";
+	}
+	@RequestMapping("/checkStudentEpidemic")
+	public String checkStudentEpidemic(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		Manager manager = (Manager) session.getAttribute("manager");
+		PageBean pb = sServiceImpl.managerCheckDaily(manager);
+		
+		List studentDaily = pb.getList();
+		session.setAttribute("studentDaily", studentDaily);
+		session.setAttribute("studentDailypb", pb);
+		
+		PageBean pageBean = new PageBean();
+		
+		return "StudentEpidemic";
+	}
+	@RequestMapping("/checkStudentFever")
+	public String checkStudentFever(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		Manager manager = (Manager) session.getAttribute("manager");
+		PageBean pb = sServiceImpl.managerCheckDaily(manager);
+		
+		List studentDaily = pb.getList();
+		session.setAttribute("studentDaily", studentDaily);
+		session.setAttribute("studentDailypb", pb);
+		
+		PageBean pageBean = new PageBean();
+		
+		return "StudentFever";
 	}
 
 }

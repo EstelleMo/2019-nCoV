@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.estelle.bean.AppBackSch;
+import com.estelle.bean.Manager;
 import com.estelle.bean.PageBean;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
@@ -35,4 +36,8 @@ public interface StudentService{
 	AppBackSch findAppHistoryByNo(String no);
 
 	int upDateAppHistory(AppBackSch appBackSch);
+
+	List<AppBackSch> findAppList(String no, String subDate);
+
+	PageBean managerCheckDaily(Manager manager);
 }

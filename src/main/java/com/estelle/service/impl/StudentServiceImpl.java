@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.estelle.bean.AppBackSch;
+import com.estelle.bean.Manager;
 import com.estelle.bean.PageBean;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentExample;
@@ -108,28 +109,17 @@ public class StudentServiceImpl implements StudentService {
 		Date date = new Date();
 		DateFormat df = DateFormat.getDateInstance();
 		DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
-//		String subDate = df.format(date);
 		String subDate = df2.format(date);
 
 		System.out.println(subDate);
-//		example.createCriteria().andSubDateEqualTo(subDate);
-//		List<StudentHealthy> list = shMapper.selectByExample(example);
-//		int count = shMapper.countByExample(example);
 		List<StudentHealthy> list = shMapper.selectBySubDate(subDate);
-//		List<StudentHealthy> list2 = shMapper.selectByExample(example);
 		int i = sMapper.countByExample(sexample);// 学生人数
-
-		System.out.println("通过今日时间查询：" + list);
-		System.out.println("-------------");
-//		System.out.println(list2);
-		System.out.println("有学生" + i + "人");
 		PageBean pageBean = new PageBean();
 		pageBean.setList(list);
 
 		pageBean.setTotalCount(i);
 		pageBean.setSubCount(i - list.size());
 		pageBean.setUmSubCount(pageBean.getTotalCount() - pageBean.getSubCount());
-//		pageBean.setList(list2);
 		return pageBean;
 	}
 
@@ -159,6 +149,35 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public int upDateAppHistory(AppBackSch appBackSch) {
 		return aMapper.updateByPrimaryKeySelective(appBackSch);
+	}
+
+	@Override
+	public List<AppBackSch> findAppList(String no, String subDate) {
+		return aMapper.selectByNoAndSubDate(no,subDate);
+	}
+
+	@Override
+	public PageBean managerCheckDaily(Manager manager) {
+		StudentExample sexample = new StudentExample();
+		int i = sMapper.countByExample(sexample );
+		PageBean pageBean = new PageBean();
+		
+
+		pageBean.setTotalCount(i);
+		
+		pageBean.setUmSubCount(pageBean.getTotalCount() - pageBean.getSubCount());
+		if(manager.getCollege()=="校") {
+			StudentHealthyExample example = new StudentHealthyExample();
+			List<StudentHealthy> list = shMapper.selectByExample(example);
+			pageBean.setList(list);
+			pageBean.setSubCount(i - list.size());
+			return pageBean;
+		}else {
+			List<StudentHealthy> list = shMapper.selectByCollege(manager.getCollege());
+			pageBean.setList(list);
+			pageBean.setSubCount(i - list.size());
+			return pageBean;
+		}
 	}
 
 }

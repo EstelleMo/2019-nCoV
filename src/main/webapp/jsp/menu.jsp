@@ -212,8 +212,8 @@ A.active {
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/ncovList"
-														target=main>－ 疫情信息记录查询</A></TD>
+														href="${pageContext.request.contextPath}/familyList"
+														target=main>－ 同住人打卡记录查询</A></TD>
 												</TR>
 												<TR>
 													<TD class=menuSmall><A class=style2
