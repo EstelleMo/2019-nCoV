@@ -163,8 +163,23 @@ public class UserController {
 			@RequestParam(value = "isAspect", required = false) String isAspect) {
 		HttpSession session = request.getSession();
 		Student student = (Student) session.getAttribute("student");
+		
+		String province_code = request.getParameter("province_code");
+		String city_code = request.getParameter("city_code");
+		String area_code = request.getParameter("area_code");
+		
+		KkRegionD province = regionService.findRegion(province_code);
+		KkRegionD city = regionService.findRegion(city_code);
+		KkRegionD area = regionService.findRegion(area_code);
+		
+		StudentHealthy studentHealthy = new StudentHealthy();
+		studentHealthy.setCurrProvince(province.getRegionName());
+		studentHealthy.setCurrCity(city.getRegionName());
+		studentHealthy.setCurrArea(area.getRegionName());
+		
+		studentHealthy.setCurrAdd(studentHealthy.getCurrProvince()+studentHealthy.getCurrCity()+studentHealthy.getCurrArea());
+		
 		if (student != null) {
-			StudentHealthy studentHealthy = new StudentHealthy();
 			studentHealthy.setNo(student.getNo());
 			studentHealthy.setName(student.getName());
 			studentHealthy.setHealthyCode(healthyCode);
@@ -345,8 +360,13 @@ public class UserController {
 			appBackSch.setBackSchTool(backSchTool);
 		}
 
-		int i = stuService.saveAppBackSch(appBackSch);
-
+		// 先查找数据库中是否存在此学生记录，若存在，则update，若不存在，则insert
+		AppBackSch appHistory = stuService.findAppHistoryByNo(student.getNo());
+		if (a != null) {
+			int i = stuService.upDateAppHistory(appBackSch);
+		} else {
+			int i = stuService.saveAppBackSch(appBackSch);
+		}
 		return "success";
 	}
 

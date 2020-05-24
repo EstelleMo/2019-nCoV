@@ -151,4 +151,14 @@ public class StudentServiceImpl implements StudentService {
 		return aMapper.insertSelective(appBackSch);
 	}
 
+	@Override
+	public AppBackSch findAppHistoryByNo(String no) {
+		return aMapper.selectByNo(no);
+	}
+
+	@Override
+	public int upDateAppHistory(AppBackSch appBackSch) {
+		return aMapper.updateByPrimaryKeySelective(appBackSch);
+	}
+
 }

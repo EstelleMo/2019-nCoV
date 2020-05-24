@@ -31,4 +31,8 @@ public interface StudentService{
 	StudentHealthy findMyDailyHistory(String subDate);
 
 	int saveAppBackSch(AppBackSch appBackSch);
+
+	AppBackSch findAppHistoryByNo(String no);
+
+	int upDateAppHistory(AppBackSch appBackSch);
 }

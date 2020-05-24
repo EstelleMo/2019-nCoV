@@ -14,14 +14,21 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
 <!-- Google web font "Open Sans" -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/calendar.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/calendar.css">
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/magnific-popup.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/slick/slick-theme.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/menu.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/fontawesome-all.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/magnific-popup.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/slick/slick.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/slick/slick-theme.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/css/menu.css">
 
 <style typte="text/css">
 #tt: {
@@ -201,13 +208,13 @@
 	<div id="preload-03"></div>
 	<div id="preload-04"></div>
 
-	<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="./js/jquery.magnific-popup.min.js"></script>
-	<script type="text/javascript" src="./js/jquery.backstretch.min.js"></script>
-	<script type="text/javascript" src="./slick/slick.min.js"></script>
-	<link rel="stylesheet" href="./css/dcalendar.picker.css" />
-	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<script type="text/javascript" src="./js/dcalendar.picker.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.backstretch.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/slick/slick.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dcalendar.picker.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/dcalendar.picker.js"></script>
 
 
 	<script type="text/javascript">
@@ -220,16 +227,16 @@
 					for (var i = 0; i < data.length; i++) {
 						$('#province_code').append(
 								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+										+ data[i].regionName + "</option>");
 					}
-				}/* ,
+				} ,
 				error : function() {
 					alert("加载省失败");
-				} */
+				} 
 			});
 		});
 		/*加载市下拉选*/
-		function getCity() {
+	province_code.onchange=	function getCity() {
 			var id = $("#province_code").val();
 			$("#city_code").empty();
 			$("#area_code").empty();
@@ -249,16 +256,16 @@
 					for (var i = 0; i < data.length; i++) {
 						$('#city_code').append(
 								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+										+ data[i].regionName + "</option>");
 					}
-				}/* ,
+				} ,
 				error : function() {
-					alert("加载市失败"); */
+					alert("加载市失败");
 				}
 			});
 		};
 		/*加载地区下拉选*/
-		function getArea() {
+		city_code.onchange=function getArea() {
 			var id = $("#city_code").val();
 			$("#area_code").empty();
 			$.ajax({
@@ -274,7 +281,7 @@
 					for (var i = 0; i < data.length; i++) {
 						$('#area_code').append(
 								"<option value='" + data[i].id + "' >"
-										+ data[i].aName + "</option>");
+										+ data[i].regionName + "</option>");
 					}
 				}/* ,
 				error : function() {

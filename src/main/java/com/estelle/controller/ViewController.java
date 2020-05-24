@@ -225,6 +225,11 @@ public class ViewController {
 
 		return "backSchool";
 	}
+	@RequestMapping("/back")
+	public String backResult() {
+		
+		return "backResult";
+	}
 
 	@RequestMapping("/outNIn")
 	public String showOutNIn() {
