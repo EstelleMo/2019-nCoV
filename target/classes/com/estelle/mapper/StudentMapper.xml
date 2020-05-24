@@ -22,6 +22,18 @@
 			jdbcType="VARCHAR" />
 		<result column="apply_status" property="applyStatus"
 			jdbcType="VARCHAR" />
+		<result column="native_province" property="nativeProvince"
+			jdbcType="VARCHAR" />
+		<result column="native_city" property="nativeCity"
+			jdbcType="VARCHAR" />
+		<result column="native_area" property="nativeArea"
+			jdbcType="VARCHAR" />
+		<result column="home_province" property="homeProvince"
+			jdbcType="VARCHAR" />
+		<result column="home_city" property="homeCity"
+			jdbcType="VARCHAR" />
+		<result column="home_area" property="homeArea"
+			jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
@@ -38,7 +50,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -70,7 +83,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -88,9 +102,14 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, no, name, tel, idcard, gender, real_pwd, default_pwd, role, college,
+		id, no, name, tel, idcard, gender, real_pwd, default_pwd,
+		role, college,
 		class_no,
-		native_place, home_det_add, apply_back_sch, apply_status
+		native_place, home_det_add, apply_back_sch,
+		apply_status, native_province,
+		native_city,
+		native_area, home_province,
+		home_city, home_area
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.estelle.bean.StudentExample">
@@ -127,20 +146,31 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.estelle.bean.Student">
-		insert into student (id, no, name,
+		insert into student (id, no,
+		name,
 		tel, idcard, gender,
 		real_pwd, default_pwd, role,
-		college, class_no, native_place,
-		home_det_add, apply_back_sch, apply_status
+		college,
+		class_no, native_place,
+		home_det_add, apply_back_sch, apply_status,
+		native_province, native_city, native_area,
+		home_province, home_city,
+		home_area
 		)
 		values (#{id,jdbcType=INTEGER}, #{no,jdbcType=VARCHAR},
 		#{name,jdbcType=VARCHAR},
-		#{tel,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR},
+		#{idcard,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR},
 		#{realPwd,jdbcType=VARCHAR}, #{defaultPwd,jdbcType=VARCHAR},
 		#{role,jdbcType=VARCHAR},
-		#{college,jdbcType=VARCHAR}, #{classNo,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR},
+		#{college,jdbcType=VARCHAR},
+		#{classNo,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR},
 		#{homeDetAdd,jdbcType=VARCHAR}, #{applyBackSch,jdbcType=VARCHAR},
-		#{applyStatus,jdbcType=VARCHAR}
+		#{applyStatus,jdbcType=VARCHAR},
+		#{nativeProvince,jdbcType=VARCHAR},
+		#{nativeCity,jdbcType=VARCHAR}, #{nativeArea,jdbcType=VARCHAR},
+		#{homeProvince,jdbcType=VARCHAR}, #{homeCity,jdbcType=VARCHAR},
+		#{homeArea,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective"
@@ -192,6 +222,24 @@
 			<if test="applyStatus != null">
 				apply_status,
 			</if>
+			<if test="nativeProvince != null">
+				native_province,
+			</if>
+			<if test="nativeCity != null">
+				native_city,
+			</if>
+			<if test="nativeArea != null">
+				native_area,
+			</if>
+			<if test="homeProvince != null">
+				home_province,
+			</if>
+			<if test="homeCity != null">
+				home_city,
+			</if>
+			<if test="homeArea != null">
+				home_area,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -239,6 +287,24 @@
 			<if test="applyStatus != null">
 				#{applyStatus,jdbcType=VARCHAR},
 			</if>
+			<if test="nativeProvince != null">
+				#{nativeProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="nativeCity != null">
+				#{nativeCity,jdbcType=VARCHAR},
+			</if>
+			<if test="nativeArea != null">
+				#{nativeArea,jdbcType=VARCHAR},
+			</if>
+			<if test="homeProvince != null">
+				#{homeProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="homeCity != null">
+				#{homeCity,jdbcType=VARCHAR},
+			</if>
+			<if test="homeArea != null">
+				#{homeArea,jdbcType=VARCHAR},
+			</if>
 		</trim>
 	</insert>
 	<select id="countByExample"
@@ -249,7 +315,6 @@
 			<include refid="Example_Where_Clause" />
 		</if>
 	</select>
-	
 	<update id="updateByExampleSelective" parameterType="map">
 		update student
 		<set>
@@ -298,6 +363,25 @@
 			<if test="record.applyStatus != null">
 				apply_status = #{record.applyStatus,jdbcType=VARCHAR},
 			</if>
+			<if test="record.nativeProvince != null">
+				native_province =
+				#{record.nativeProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="record.nativeCity != null">
+				native_city = #{record.nativeCity,jdbcType=VARCHAR},
+			</if>
+			<if test="record.nativeArea != null">
+				native_area = #{record.nativeArea,jdbcType=VARCHAR},
+			</if>
+			<if test="record.homeProvince != null">
+				home_province = #{record.homeProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="record.homeCity != null">
+				home_city = #{record.homeCity,jdbcType=VARCHAR},
+			</if>
+			<if test="record.homeArea != null">
+				home_area = #{record.homeArea,jdbcType=VARCHAR},
+			</if>
 		</set>
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
@@ -306,20 +390,44 @@
 	<update id="updateByExample" parameterType="map">
 		update student
 		set id = #{record.id,jdbcType=INTEGER},
-		no = #{record.no,jdbcType=VARCHAR},
+		no =
+		#{record.no,jdbcType=VARCHAR},
 		name = #{record.name,jdbcType=VARCHAR},
 		tel = #{record.tel,jdbcType=VARCHAR},
-		idcard = #{record.idcard,jdbcType=VARCHAR},
-		gender = #{record.gender,jdbcType=VARCHAR},
-		real_pwd = #{record.realPwd,jdbcType=VARCHAR},
-		default_pwd = #{record.defaultPwd,jdbcType=VARCHAR},
-		role = #{record.role,jdbcType=VARCHAR},
-		college = #{record.college,jdbcType=VARCHAR},
-		class_no = #{record.classNo,jdbcType=VARCHAR},
-		native_place = #{record.nativePlace,jdbcType=VARCHAR},
-		home_det_add = #{record.homeDetAdd,jdbcType=VARCHAR},
-		apply_back_sch = #{record.applyBackSch,jdbcType=VARCHAR},
-		apply_status = #{record.applyStatus,jdbcType=VARCHAR}
+		idcard =
+		#{record.idcard,jdbcType=VARCHAR},
+		gender =
+		#{record.gender,jdbcType=VARCHAR},
+		real_pwd =
+		#{record.realPwd,jdbcType=VARCHAR},
+		default_pwd =
+		#{record.defaultPwd,jdbcType=VARCHAR},
+		role =
+		#{record.role,jdbcType=VARCHAR},
+		college =
+		#{record.college,jdbcType=VARCHAR},
+		class_no =
+		#{record.classNo,jdbcType=VARCHAR},
+		native_place =
+		#{record.nativePlace,jdbcType=VARCHAR},
+		home_det_add =
+		#{record.homeDetAdd,jdbcType=VARCHAR},
+		apply_back_sch =
+		#{record.applyBackSch,jdbcType=VARCHAR},
+		apply_status =
+		#{record.applyStatus,jdbcType=VARCHAR},
+		native_province =
+		#{record.nativeProvince,jdbcType=VARCHAR},
+		native_city =
+		#{record.nativeCity,jdbcType=VARCHAR},
+		native_area =
+		#{record.nativeArea,jdbcType=VARCHAR},
+		home_province =
+		#{record.homeProvince,jdbcType=VARCHAR},
+		home_city =
+		#{record.homeCity,jdbcType=VARCHAR},
+		home_area =
+		#{record.homeArea,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -370,6 +478,24 @@
 			<if test="applyStatus != null">
 				apply_status = #{applyStatus,jdbcType=VARCHAR},
 			</if>
+			<if test="nativeProvince != null">
+				native_province = #{nativeProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="nativeCity != null">
+				native_city = #{nativeCity,jdbcType=VARCHAR},
+			</if>
+			<if test="nativeArea != null">
+				native_area = #{nativeArea,jdbcType=VARCHAR},
+			</if>
+			<if test="homeProvince != null">
+				home_province = #{homeProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="homeCity != null">
+				home_city = #{homeCity,jdbcType=VARCHAR},
+			</if>
+			<if test="homeArea != null">
+				home_area = #{homeArea,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
@@ -377,19 +503,38 @@
 		parameterType="com.estelle.bean.Student">
 		update student
 		set no = #{no,jdbcType=VARCHAR},
-		name = #{name,jdbcType=VARCHAR},
+		name =
+		#{name,jdbcType=VARCHAR},
 		tel = #{tel,jdbcType=VARCHAR},
-		idcard = #{idcard,jdbcType=VARCHAR},
+		idcard =
+		#{idcard,jdbcType=VARCHAR},
 		gender = #{gender,jdbcType=VARCHAR},
 		real_pwd = #{realPwd,jdbcType=VARCHAR},
-		default_pwd = #{defaultPwd,jdbcType=VARCHAR},
+		default_pwd =
+		#{defaultPwd,jdbcType=VARCHAR},
 		role = #{role,jdbcType=VARCHAR},
 		college = #{college,jdbcType=VARCHAR},
-		class_no = #{classNo,jdbcType=VARCHAR},
-		native_place = #{nativePlace,jdbcType=VARCHAR},
-		home_det_add = #{homeDetAdd,jdbcType=VARCHAR},
-		apply_back_sch = #{applyBackSch,jdbcType=VARCHAR},
-		apply_status = #{applyStatus,jdbcType=VARCHAR}
+		class_no =
+		#{classNo,jdbcType=VARCHAR},
+		native_place =
+		#{nativePlace,jdbcType=VARCHAR},
+		home_det_add =
+		#{homeDetAdd,jdbcType=VARCHAR},
+		apply_back_sch =
+		#{applyBackSch,jdbcType=VARCHAR},
+		apply_status =
+		#{applyStatus,jdbcType=VARCHAR},
+		native_province =
+		#{nativeProvince,jdbcType=VARCHAR},
+		native_city =
+		#{nativeCity,jdbcType=VARCHAR},
+		native_area =
+		#{nativeArea,jdbcType=VARCHAR},
+		home_province =
+		#{homeProvince,jdbcType=VARCHAR},
+		home_city =
+		#{homeCity,jdbcType=VARCHAR},
+		home_area = #{homeArea,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
@@ -423,5 +568,4 @@
 		where name = #{name}
 		and college = #{college}
 	</select>
-	
 </mapper>

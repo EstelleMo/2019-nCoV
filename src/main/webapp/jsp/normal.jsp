@@ -74,21 +74,50 @@
 
 			<div style="margin-bottom: 10px">
 				<font color="red">*</font> <font color="darkgreen">6.户籍</font>
-				<div id="nativePlace">
-					<select class="select" id="province_code1" name="province_code1"
-						οnchange="getCity()">
-						<option value="">请选择</option>
-					</select> <select class="select" id="city_code1" name="city_code1"
-						οnchange="getArea()">
-						<option value="">请选择</option>
-					</select> <select class="select" id="area_code1" name="area_code1">
-						<option value="">请选择</option>
-					</select>
-				</div>
+				<c:if test="${!empty student.nativePlace }">
+					<div id="nativePlace">
+						<select class="select" id="province_code1" name="province_code1"
+							οnchange="getCity()">
+							<option value="">${student.nativeProvince }</option>
+						</select> <select class="select" id="city_code1" name="city_code1"
+							οnchange="getArea()">
+							<option value="">${student.nativeCity }</option>
+						</select> <select class="select" id="area_code1" name="area_code1">
+							<option value="">${student.nativeArea }</option>
+						</select>
+					</div>
+				</c:if>
+				<c:if test="${empty student.nativePlace }">
+					<div id="nativePlace">
+						<select class="select" id="province_code1" name="province_code1"
+							οnchange="getCity()">
+							<option value="">请选择</option>
+						</select> <select class="select" id="city_code1" name="city_code1"
+							οnchange="getArea()">
+							<option value="">请选择</option>
+						</select> <select class="select" id="area_code1" name="area_code1">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</c:if>
 			</div>
 
 			<div style="margin-bottom: 10px">
 				<font color="red">*</font> <font color="darkgreen">7.家庭住址</font>
+				<c:if test="${!empty student.homeDetAdd }">
+				<div class="" id="homeDetAdd">
+					<select class="select" id="province_code2" name="province_code2"
+						οnchange="getCity()">
+						<option value="">${student.homeProvince }</option>
+					</select> <select class="select" id="city_code2" name="city_code2"
+						οnchange="getArea()">
+						<option value="">${student.homeCity }</option>
+					</select> <select class="select" id="area_code2" name="area_code2">
+						<option value="">${student.homeArea}</option>
+					</select> <input type="text" placeholder="请输入详细地址">
+				</div>
+				</c:if>
+				<c:if test="${empty student.homeDetAdd }">
 				<div class="" id="homeDetAdd">
 					<select class="select" id="province_code2" name="province_code2"
 						οnchange="getCity()">
@@ -100,6 +129,7 @@
 						<option value="">请选择</option>
 					</select> <input type="text" placeholder="请输入详细地址">
 				</div>
+				</c:if>
 			</div>
 
 			<div style="margin-bottom: 10px">
@@ -150,7 +180,6 @@
 	<script type="text/javascript">
 		/*加载省下拉选*/
 		$(function() {
-			console.log("加载省1");
 			$.ajax({
 				type : "post",
 				url : "${pageContext.request.contextPath}/area/getProvince",
@@ -200,7 +229,6 @@
 			});
 		};
 		province_code2.onchange = function getCity() {
-			console.log("加载市")
 			var id = $("#province_code2").val();
 			$("#city_code2").empty();
 			$("#area_code2").empty();
@@ -230,7 +258,6 @@
 		};
 		/*加载地区下拉选*/
 		city_code1.onchange = function getArea() {
-			console.log("加载地区")
 			var id = $("#city_code1").val();
 			$("#area_code1").empty();
 			$.ajax({
@@ -254,7 +281,6 @@
 				}
 			});
 			city_code2.onchange = function getArea() {
-				console.log("加载地区")
 				var id = $("#city_code2").val();
 				$("#area_code2").empty();
 				$

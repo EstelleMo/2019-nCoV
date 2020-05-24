@@ -3,6 +3,7 @@ package com.estelle.service;
 import java.util.Date;
 import java.util.List;
 
+import com.estelle.bean.AppBackSch;
 import com.estelle.bean.PageBean;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
@@ -28,4 +29,6 @@ public interface StudentService{
 	int saveDaily(StudentHealthy studentHealthy);
 
 	StudentHealthy findMyDailyHistory(String subDate);
+
+	int saveAppBackSch(AppBackSch appBackSch);
 }

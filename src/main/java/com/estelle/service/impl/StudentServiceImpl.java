@@ -10,12 +10,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.estelle.bean.AppBackSch;
 import com.estelle.bean.PageBean;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentExample;
 import com.estelle.bean.StudentHealthy;
 import com.estelle.bean.StudentHealthyExample;
 import com.estelle.bean.StudentHealthyExample.Criteria;
+import com.estelle.mapper.AppBackSchMapper;
 import com.estelle.mapper.StudentHealthyMapper;
 //import com.estelle.mapper.StudentHealthyMapper;
 import com.estelle.mapper.StudentMapper;
@@ -27,6 +29,8 @@ public class StudentServiceImpl implements StudentService {
 	private StudentMapper sMapper;
 	@Autowired
 	private StudentHealthyMapper shMapper;
+	@Autowired
+	private AppBackSchMapper aMapper;
 
 	@Override
 	public Student login(String no, String password) {
@@ -140,6 +144,11 @@ public class StudentServiceImpl implements StudentService {
 		StudentHealthy studentHealthy = list.get(0);
 		System.out.println(studentHealthy);
 		return studentHealthy;
+	}
+
+	@Override
+	public int saveAppBackSch(AppBackSch appBackSch) {
+		return aMapper.insertSelective(appBackSch);
 	}
 
 }

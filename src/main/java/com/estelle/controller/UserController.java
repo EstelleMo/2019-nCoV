@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.estelle.bean.AppBackSch;
 import com.estelle.bean.Epidemic;
 import com.estelle.bean.FamHealthy;
 import com.estelle.bean.Family;
@@ -41,6 +42,7 @@ import com.estelle.bean.KkRegionD;
 import com.estelle.bean.Manager;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
+import com.estelle.mapper.KkRegionDMapper;
 import com.estelle.service.EpidemicService;
 import com.estelle.service.FamilyService;
 import com.estelle.service.FeverService;
@@ -112,28 +114,39 @@ public class UserController {
 		Student student = (Student) session.getAttribute("student");
 		student.setIdcard(idcard);
 		student.setTel(tel);
-		System.out.println("idcard : "+idcard);
-		System.out.println("tel : "+tel);
-		String province_code1 = request.getAttribute("province_code1").toString();
-		String city_code1 = request.getAttribute("city_code1").toString();
-		String area_code1 = request.getAttribute("area_code1").toString();
-		String province_code2 = request.getAttribute("province_code2").toString();
-		String city_code2 = request.getAttribute("city_code2").toString();
-		String area_code2 = request.getAttribute("area_code2").toString();
-		
+		System.out.println("idcard : " + idcard);
+		System.out.println("tel : " + tel);
+		String province_code1 = request.getParameter("province_code1");
+		String city_code1 = request.getParameter("city_code1");
+		String area_code1 = request.getParameter("area_code1");
+
+		String province_code2 = request.getParameter("province_code2");
+		String city_code2 = request.getParameter("city_code2");
+		String area_code2 = request.getParameter("area_code2");
+
 		KkRegionD nativeProvince = regionService.findRegion(province_code1);
 		KkRegionD nativeCity = regionService.findRegion(city_code1);
 		KkRegionD nativeArea = regionService.findRegion(area_code1);
 		KkRegionD homeProvince = regionService.findRegion(province_code2);
 		KkRegionD homeCity = regionService.findRegion(city_code2);
 		KkRegionD homeArea = regionService.findRegion(area_code2);
-		
-		
+
+		student.setHomeDetAdd(homeProvince.getRegionName() + homeCity.getRegionName() + homeArea.getRegionName());
+		student.setNativePlace(
+				nativeProvince.getRegionName() + nativeCity.getRegionName() + nativeArea.getRegionName());
+
+		student.setHomeProvince(homeProvince.getRegionName());
+		student.setHomeCity(homeCity.getRegionName());
+		student.setHomeArea(homeArea.getRegionName());
+
+		student.setNativeProvince(nativeProvince.getRegionName());
+		student.setNativeCity(nativeCity.getRegionName());
+		student.setNativeArea(nativeArea.getRegionName());
 		System.out.println("-----------");
-		
+
 		System.out.println(student);
 		int i = stuService.saveMsg(student);
-		
+
 		return "success";
 	}
 
@@ -180,14 +193,14 @@ public class UserController {
 		System.out.println("保存家庭成员每日打卡");
 		HttpSession session = request.getSession();
 		Student s = (Student) session.getAttribute("student");
-		
+
 		String subDate = saveSubDate();
-		
+
 		FamHealthy fh = new FamHealthy();
 		fh.setSubDate(subDate);
 		fh.setSname(s.getName());
 		fh.setSno(s.getNo());
-		
+
 		familyService.saveFamilyDaily(fh);
 
 		return "success";
@@ -195,18 +208,29 @@ public class UserController {
 
 	@RequestMapping("/saveFever")
 	public String saveFever(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "name", required = false) String name
-	) {
-		System.out.println("保存发热跟进表");
+			@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "isHos", required = false) String isHos,
+			@RequestParam(value = "hospitalize", required = false) String hospitalize,
+			@RequestParam(value = "isCure", required = false) String isCure,
+			@RequestParam(value = "relatioOfEpidemic", required = false) String relatioOfEpidemic,
+			@RequestParam(value = "protect", required = false) String protect,
+			@RequestParam(value = "is_family_ill", required = false) String is_family_ill) {
 		HttpSession session = request.getSession();
 		Student student = (Student) session.getAttribute("student");
-		
+
 		Fever fever = new Fever();
 		fever.setName(name);
-		
+		fever.setNo(student.getNo());
+		fever.setIsHos(isHos);
+		fever.setHospitalize(hospitalize);
+		fever.setRelatioOfEpidemic(relatioOfEpidemic);
+		fever.setIsCure(isCure);
+		fever.setProtect(protect);
+		fever.setIsFamilyIll(is_family_ill);
+
 		String subDate = saveSubDate();
 		fever.setSubDate(subDate);
-		
+
 		int i = feverService.saveFever(fever);
 		return "success";
 	}
@@ -228,7 +252,16 @@ public class UserController {
 		Epidemic epidemic = new Epidemic();
 		epidemic.setName(s.getName());
 		epidemic.setNo(s.getNo());
-		String currAdd = "";
+
+		String province_code = request.getParameter("province_code");
+		String city_code = request.getParameter("city_code");
+		String area_code = request.getParameter("area_code");
+
+		KkRegionD province = regionService.findRegion(province_code);
+		KkRegionD city = regionService.findRegion(city_code);
+		KkRegionD area = regionService.findRegion(area_code);
+
+		String currAdd = province.getRegionName() + city.getRegionName() + area.getRegionName();
 		epidemic.setCurrAdd(currAdd);
 		epidemic.setHealthyOfFam(healthyOfFam);
 		epidemic.setHealthyStu(healthyStu);
@@ -239,7 +272,7 @@ public class UserController {
 
 		String subDate = saveSubDate();
 		epidemic.setSubDate(subDate);
-		
+
 		int i = epidemicService.saveEpidemic(epidemic);
 		return "success";
 	}
@@ -278,6 +311,42 @@ public class UserController {
 		family.setRelationship(relationship);
 
 		int i = familyService.saveFamily(family);
+		return "success";
+	}
+
+	@RequestMapping("/applyBackSch")
+	public String applyBackSch(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "backTime", required = false) String backTime,
+			@RequestParam(value = "backSchTool", required = false) String backSchTool) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		AppBackSch appBackSch = new AppBackSch();
+		String subdate = saveSubDate();
+		appBackSch.setSubdate(subdate);
+		String p = (String) request.getParameter("province_code1");
+		String c = (String) request.getParameter("city_code1");
+		String a = (String) request.getParameter("area_code1");
+
+		KkRegionD province = regionService.findRegion(p);
+		KkRegionD city = regionService.findRegion(c);
+		KkRegionD area = regionService.findRegion(a);
+		System.out.println(province);
+		System.out.println(city);
+		System.out.println(area);
+		String backFromWhere = "";
+//		String backFromWhere = province.getRegionName()+city.getRegionName()+area.getRegionName();
+		if (student != null) {
+			appBackSch.setNo(student.getNo());
+			appBackSch.setName(student.getName());
+			appBackSch.setCollege(student.getCollege());
+
+			appBackSch.setBackFromWhere(backFromWhere);
+			appBackSch.setBackSchTime(backTime);
+			appBackSch.setBackSchTool(backSchTool);
+		}
+
+		int i = stuService.saveAppBackSch(appBackSch);
+
 		return "success";
 	}
 

@@ -189,17 +189,6 @@ A.active {
 														href="${pageContext.request.contextPath }/backSchool"
 														target=main>－ 返校申请</A></TD>
 												</TR>
-												<TR>
-													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/outNIn"
-														target=main>－ 校园出入证申请</A></TD>
-												</TR>
-												<TR>
-													<TD class=menuSmall><A class=style2
-														href="${pageContext.request.contextPath }/card"
-														target=main>－ 出入证</A></TD>
-												</TR>
-
 											</TBODY>
 										</TABLE>
 									</TD>
@@ -217,15 +206,23 @@ A.active {
 											cellPadding=2 width=155 align=center border=0>
 											<TBODY>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/dailyList"
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/dailyList"
 														target=main>－ 健康打卡记录查询</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/ncovList"
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/ncovList"
 														target=main>－ 疫情信息记录查询</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/back"
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/feverList"
+														target=main>－ 发热跟进记录查询</A></TD>
+												</TR>
+												<TR>
+													<TD class=menuSmall><A class=style2
+														href="${pageContext.request.contextPath }/back"
 														target=main>－ 申请返校情况查询</A></TD>
 												</TR>
 											</TBODY>

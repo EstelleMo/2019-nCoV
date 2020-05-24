@@ -31,6 +31,18 @@ public class Student {
 
     private String applyStatus;
 
+    private String nativeProvince;
+
+    private String nativeCity;
+
+    private String nativeArea;
+
+    private String homeProvince;
+
+    private String homeCity;
+
+    private String homeArea;
+
     public Integer getId() {
         return id;
     }
@@ -151,9 +163,51 @@ public class Student {
         this.applyStatus = applyStatus == null ? null : applyStatus.trim();
     }
 
-	@Override
-	public String toString() {
-		return "Student [no=" + no + ", name=" + name + ", tel=" + tel + ", idcard=" + idcard + "]";
-	}
-    
+    public String getNativeProvince() {
+        return nativeProvince;
+    }
+
+    public void setNativeProvince(String nativeProvince) {
+        this.nativeProvince = nativeProvince == null ? null : nativeProvince.trim();
+    }
+
+    public String getNativeCity() {
+        return nativeCity;
+    }
+
+    public void setNativeCity(String nativeCity) {
+        this.nativeCity = nativeCity == null ? null : nativeCity.trim();
+    }
+
+    public String getNativeArea() {
+        return nativeArea;
+    }
+
+    public void setNativeArea(String nativeArea) {
+        this.nativeArea = nativeArea == null ? null : nativeArea.trim();
+    }
+
+    public String getHomeProvince() {
+        return homeProvince;
+    }
+
+    public void setHomeProvince(String homeProvince) {
+        this.homeProvince = homeProvince == null ? null : homeProvince.trim();
+    }
+
+    public String getHomeCity() {
+        return homeCity;
+    }
+
+    public void setHomeCity(String homeCity) {
+        this.homeCity = homeCity == null ? null : homeCity.trim();
+    }
+
+    public String getHomeArea() {
+        return homeArea;
+    }
+
+    public void setHomeArea(String homeArea) {
+        this.homeArea = homeArea == null ? null : homeArea.trim();
+    }
 }

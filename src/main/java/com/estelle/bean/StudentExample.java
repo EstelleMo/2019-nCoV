@@ -1143,6 +1143,426 @@ public class StudentExample {
             addCriterion("apply_status not between", value1, value2, "applyStatus");
             return (Criteria) this;
         }
+
+        public Criteria andNativeProvinceIsNull() {
+            addCriterion("native_province is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceIsNotNull() {
+            addCriterion("native_province is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceEqualTo(String value) {
+            addCriterion("native_province =", value, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceNotEqualTo(String value) {
+            addCriterion("native_province <>", value, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceGreaterThan(String value) {
+            addCriterion("native_province >", value, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceGreaterThanOrEqualTo(String value) {
+            addCriterion("native_province >=", value, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceLessThan(String value) {
+            addCriterion("native_province <", value, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceLessThanOrEqualTo(String value) {
+            addCriterion("native_province <=", value, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceLike(String value) {
+            addCriterion("native_province like", value, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceNotLike(String value) {
+            addCriterion("native_province not like", value, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceIn(List<String> values) {
+            addCriterion("native_province in", values, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceNotIn(List<String> values) {
+            addCriterion("native_province not in", values, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceBetween(String value1, String value2) {
+            addCriterion("native_province between", value1, value2, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeProvinceNotBetween(String value1, String value2) {
+            addCriterion("native_province not between", value1, value2, "nativeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityIsNull() {
+            addCriterion("native_city is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityIsNotNull() {
+            addCriterion("native_city is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityEqualTo(String value) {
+            addCriterion("native_city =", value, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityNotEqualTo(String value) {
+            addCriterion("native_city <>", value, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityGreaterThan(String value) {
+            addCriterion("native_city >", value, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityGreaterThanOrEqualTo(String value) {
+            addCriterion("native_city >=", value, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityLessThan(String value) {
+            addCriterion("native_city <", value, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityLessThanOrEqualTo(String value) {
+            addCriterion("native_city <=", value, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityLike(String value) {
+            addCriterion("native_city like", value, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityNotLike(String value) {
+            addCriterion("native_city not like", value, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityIn(List<String> values) {
+            addCriterion("native_city in", values, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityNotIn(List<String> values) {
+            addCriterion("native_city not in", values, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityBetween(String value1, String value2) {
+            addCriterion("native_city between", value1, value2, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeCityNotBetween(String value1, String value2) {
+            addCriterion("native_city not between", value1, value2, "nativeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaIsNull() {
+            addCriterion("native_area is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaIsNotNull() {
+            addCriterion("native_area is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaEqualTo(String value) {
+            addCriterion("native_area =", value, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaNotEqualTo(String value) {
+            addCriterion("native_area <>", value, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaGreaterThan(String value) {
+            addCriterion("native_area >", value, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaGreaterThanOrEqualTo(String value) {
+            addCriterion("native_area >=", value, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaLessThan(String value) {
+            addCriterion("native_area <", value, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaLessThanOrEqualTo(String value) {
+            addCriterion("native_area <=", value, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaLike(String value) {
+            addCriterion("native_area like", value, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaNotLike(String value) {
+            addCriterion("native_area not like", value, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaIn(List<String> values) {
+            addCriterion("native_area in", values, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaNotIn(List<String> values) {
+            addCriterion("native_area not in", values, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaBetween(String value1, String value2) {
+            addCriterion("native_area between", value1, value2, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andNativeAreaNotBetween(String value1, String value2) {
+            addCriterion("native_area not between", value1, value2, "nativeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceIsNull() {
+            addCriterion("home_province is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceIsNotNull() {
+            addCriterion("home_province is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceEqualTo(String value) {
+            addCriterion("home_province =", value, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceNotEqualTo(String value) {
+            addCriterion("home_province <>", value, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceGreaterThan(String value) {
+            addCriterion("home_province >", value, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceGreaterThanOrEqualTo(String value) {
+            addCriterion("home_province >=", value, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceLessThan(String value) {
+            addCriterion("home_province <", value, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceLessThanOrEqualTo(String value) {
+            addCriterion("home_province <=", value, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceLike(String value) {
+            addCriterion("home_province like", value, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceNotLike(String value) {
+            addCriterion("home_province not like", value, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceIn(List<String> values) {
+            addCriterion("home_province in", values, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceNotIn(List<String> values) {
+            addCriterion("home_province not in", values, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceBetween(String value1, String value2) {
+            addCriterion("home_province between", value1, value2, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeProvinceNotBetween(String value1, String value2) {
+            addCriterion("home_province not between", value1, value2, "homeProvince");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityIsNull() {
+            addCriterion("home_city is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityIsNotNull() {
+            addCriterion("home_city is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityEqualTo(String value) {
+            addCriterion("home_city =", value, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityNotEqualTo(String value) {
+            addCriterion("home_city <>", value, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityGreaterThan(String value) {
+            addCriterion("home_city >", value, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityGreaterThanOrEqualTo(String value) {
+            addCriterion("home_city >=", value, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityLessThan(String value) {
+            addCriterion("home_city <", value, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityLessThanOrEqualTo(String value) {
+            addCriterion("home_city <=", value, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityLike(String value) {
+            addCriterion("home_city like", value, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityNotLike(String value) {
+            addCriterion("home_city not like", value, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityIn(List<String> values) {
+            addCriterion("home_city in", values, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityNotIn(List<String> values) {
+            addCriterion("home_city not in", values, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityBetween(String value1, String value2) {
+            addCriterion("home_city between", value1, value2, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeCityNotBetween(String value1, String value2) {
+            addCriterion("home_city not between", value1, value2, "homeCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaIsNull() {
+            addCriterion("home_area is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaIsNotNull() {
+            addCriterion("home_area is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaEqualTo(String value) {
+            addCriterion("home_area =", value, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaNotEqualTo(String value) {
+            addCriterion("home_area <>", value, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaGreaterThan(String value) {
+            addCriterion("home_area >", value, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaGreaterThanOrEqualTo(String value) {
+            addCriterion("home_area >=", value, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaLessThan(String value) {
+            addCriterion("home_area <", value, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaLessThanOrEqualTo(String value) {
+            addCriterion("home_area <=", value, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaLike(String value) {
+            addCriterion("home_area like", value, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaNotLike(String value) {
+            addCriterion("home_area not like", value, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaIn(List<String> values) {
+            addCriterion("home_area in", values, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaNotIn(List<String> values) {
+            addCriterion("home_area not in", values, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaBetween(String value1, String value2) {
+            addCriterion("home_area between", value1, value2, "homeArea");
+            return (Criteria) this;
+        }
+
+        public Criteria andHomeAreaNotBetween(String value1, String value2) {
+            addCriterion("home_area not between", value1, value2, "homeArea");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

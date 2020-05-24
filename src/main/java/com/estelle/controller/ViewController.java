@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.estelle.bean.Epidemic;
 import com.estelle.bean.FamHealthy;
+import com.estelle.bean.Fever;
 import com.estelle.bean.PageBean;
 import com.estelle.bean.Student;
 import com.estelle.bean.StudentHealthy;
+import com.estelle.service.EpidemicService;
 import com.estelle.service.FamilyService;
+import com.estelle.service.FeverService;
 import com.estelle.service.StudentService;
 import com.estelle.service.impl.StudentServiceImpl;
 
@@ -29,6 +33,10 @@ public class ViewController {
 	private StudentService sServiceImpl;
 	@Autowired
 	private FamilyService fServiceImpl;
+	@Autowired
+	private EpidemicService eServiceImpl;
+	@Autowired
+	private FeverService feverServiceImpl;
 
 	@RequestMapping("/")
 	public ModelAndView loadIndex() {
@@ -129,12 +137,13 @@ public class ViewController {
 		return "checkncov";
 	}
 
-	@RequestMapping("/ncovList")
-	public String ncovList() {
-
-		return "ncovList";
+	@RequestMapping("/ncovHistory")
+	public String ncovHistory(
+			HttpServletRequest request,
+			HttpServletResponse response
+			) {
+		return "ncovHistory";
 	}
-
 	@RequestMapping("/dailyHistory")
 	public String dailyHistory(
 			HttpServletRequest request,
@@ -189,13 +198,26 @@ public class ViewController {
 		String sno = student.getNo();
 		PageBean fpageBean = fServiceImpl.findAllFamily(sno);
 		session.setAttribute("fpageBean", fpageBean);
-		return "familyList";
+		return "familyDaily";
 	}
 
 	@RequestMapping("/fever")
 	public String showFever() {
 
 		return "fever";
+	}
+	@RequestMapping("/feverHistory")
+	public String feverHistory() {
+		
+		return "feverHistory";
+	}
+	@RequestMapping("/feverList")
+	public String feverList(HttpServletRequest request, HttpServletResponse respons) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		List<Fever> feverList = feverServiceImpl.findList(student.getNo());
+		
+		return "feverList";
 	}
 
 	@RequestMapping("/backSchool")
@@ -227,10 +249,31 @@ public class ViewController {
 	public StudentHealthy studentSub(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String subDate = request.getParameter("subDate");
-		System.out.println("checkList" + " " +subDate);
 		StudentHealthy sh = sServiceImpl.findMyDailyHistory(subDate);
 		session.setAttribute("sh", sh);
 		return sh;
+	}
+	// 查看
+	@RequestMapping("/ncovList")
+	public String ncovList(HttpServletRequest request, HttpServletResponse respons,
+			@Param(value = "subDate") Date subDate) {
+		HttpSession session = request.getSession();
+		Student student = (Student) session.getAttribute("student");
+		List<Epidemic> ncovList = eServiceImpl.findHistory(student.getNo());
+		session.setAttribute("ncovList", ncovList);
+		
+		return "ncovList";
+	}
+	
+	// 查看疫情防控信息详情的页面
+	@RequestMapping("/checkNcovList")
+	@ResponseBody
+	public Epidemic checkNcovList(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		String subDate = request.getParameter("subDate");
+		Epidemic e = eServiceImpl.findMyEpidemicHistory(subDate);
+		session.setAttribute("e", e);
+		return e;
 	}
 
 	// 修改密码跳转的页面

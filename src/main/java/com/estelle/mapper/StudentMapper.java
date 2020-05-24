@@ -32,9 +32,8 @@ public interface StudentMapper {
 
 	List<Student> selectByName(String name);
 
-	Student selectByNoNCollege(@Param(value = "no")String no, @Param(value = "college")String college);
+	Student selectByNoNCollege(@Param(value = "no") String no, @Param(value = "college") String college);
 
-	List<Student> selectByNameNCollege(@Param(value = "name")String name,  @Param(value = "college")String college);
-
+	List<Student> selectByNameNCollege(@Param(value = "name") String name, @Param(value = "college") String college);
 
 }
